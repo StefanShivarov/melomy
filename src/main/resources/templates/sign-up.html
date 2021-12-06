@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melomy - Sign Up</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+
+<body>
+<nav th:replace="fragments/commons::navigation"></nav>
+    <main class="auth-main">
+        <section class="sign-up-section">
+            <div class="sign-up-title">
+                <h1>Sign up</h1>
+                <h2>Create an account to listen to your favourite melodies for free!</h2>
+            </div>
+            <form action="" class="sign-up-form">
+                <div class="form-row">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" name="fullName" id="fullName" placeholder="Enter your full name">
+                </div>
+                <div class="form-row">
+                    <label for="username">Username *</label>
+                    <input type="text" name="username" id="username" placeholder="Enter your username">
+                </div>
+                <div class="form-row">
+                    <label for="email">Email Address *</label>
+                    <input type="text" name="email" id="email" placeholder="Enter your email address">
+                </div>
+                <div class="form-row">
+                    <label for="password">Password *</label>
+                    <input type="password" name="password" id="password" placeholder="Enter your password">
+                </div>
+                <div class="form-row">
+                    <label for="password">Confirm your password *</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Enter your password again">
+                </div>
+                <div class="form-row">
+                    <label for="fullName">Profile Picture Url</label>
+                    <input type="text" name="imageUrl" id="imageUrl" placeholder="Enter your profile picture image url (optional)">
+                </div>
+                <div class="form-row">
+                    <input type="submit" id="submitSignUp" value="Sign up">
+                </div>
+            </form>
+            <h4>Already have an account? Log in <a href="#">here</a>.</h4>
+        </section>
+    </main>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+
+</html>

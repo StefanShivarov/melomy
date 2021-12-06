@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song name - Melomy</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+
+<body>
+<nav th:replace="fragments/commons::navigation"></nav>
+<main class="album-main-wrapper">
+        <article class="album-article">
+            <section class="player-section">
+                <iframe width="960" height="540" src="https://www.youtube.com/embed/E5DlBU0A61c"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </section>
+            <section class="song-player-info">
+                <h1>Rock & Roll Star</h1>
+                    <h4>Song • Oasis • Definitely Maybe</h4>
+            </section>
+        </article>
+        <article class="comment-article">
+            <section class="add-comment-section">
+                
+                <form action="">
+                    <label for="addComment">Add comment</label>
+                    <textarea name="addComment" id="addComment" cols="30" rows="10" resize="none"></textarea>
+                    <input type="submit" value="Comment">
+                </form>
+            </section>
+            <section class="comments-section">
+                <div class="comment-field">
+                    <h4>${username}</h4>
+                    <p class="comment-date">${date}</p>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque est esse autem illo quia, iure
+                        dignissimos eveniet nam sapiente, debitis doloremque, ipsa delectus fuga! Ipsum esse veritatis
+                        voluptatum excepturi officia!</p>
+                </div>
+            </section>
+        </article>
+    </main>
+    <!-- <footer>
+        <h1>Melomy</h1>
+        <article class="footer-info">
+
+            <ul class="footer-list">
+                <li class="footer-list-item">
+                    <h4>COMPANY</h4>
+                </li>
+                <li class="footer-list-item">
+                    <a href="#">About</a>
+                </li>
+                <li class="footer-list-item">
+                    <a href="#">Support</a>
+                </li>
+                <li class="footer-list-item">
+                    <a href="#">Contact us</a>
+                </li>
+            </ul>
+            <ul class="footer-list">
+                <li class="footer-list-item">
+                    <h4>COMMUNITY</h4>
+                </li>
+                <li class="footer-list-item">
+                    <a href="#">Artists</a>
+                </li>
+                <li class="footer-list-item">
+                    <a href="#">Genres</a>
+                </li>
+            </ul>
+        </article>
+        <article class="social-and-copyright">
+            <ul class="social-media-list">
+                <li class="social-media-item">
+                    <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+                </li>
+                <li class="social-media-item">
+                    <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li class="social-media-item">
+                    <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+                </li>
+            </ul>
+            <p>&copy; 2021 Melomy</p>
+        </article>
+    </footer> -->
+</body>
+
+</html>

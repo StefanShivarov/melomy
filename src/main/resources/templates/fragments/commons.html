@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:fragment="navigation" class="navbar">
+    <article class="logo-article">
+        <a class="logo-title" href="/">Melomy</a>
+    </article>
+    <ul class="navbar-list">
+        <div class="unauthenticated">
+            <li class="navbar-list-item">
+                <a href="#">About</a>
+            </li>
+            <li class="navbar-list-item">
+                <a href="#">Support</a>
+            </li>
+            <li class="navbar-list-item">
+                <a class="sign-up-btn" href="/users/sign-up">Sign up</a>
+            </li>
+            <li class="navbar-list-item">
+                <a class="login-btn" href="/users/login">Log in</a>
+            </li>
+        </div>
+        <div class="authenticated">
+            <li class="navbar-list-item">
+                <a href="#" class="sign-out-btn">Explore</a>
+            </li>
+            <li class="navbar-list-item">
+                <a href="#" class="sign-out-btn">My music</a>
+            </li>
+            <li class="navbar-list-item">
+                <a href="#" class="sign-out-btn">Sign out</a>
+            </li>
+        </div>
+    </ul>
+</nav>
+
+<footer th:fragment="footer">
+    <h1>Melomy</h1>
+    <article class="footer-info">
+
+        <ul class="footer-list">
+            <li class="footer-list-item">
+                <h4>COMPANY</h4>
+            </li>
+            <li class="footer-list-item">
+                <a href="#">About</a>
+            </li>
+            <li class="footer-list-item">
+                <a href="#">Support</a>
+            </li>
+            <li class="footer-list-item">
+                <a href="#">Contact us</a>
+            </li>
+        </ul>
+        <ul class="footer-list">
+            <li class="footer-list-item">
+                <h4>COMMUNITY</h4>
+            </li>
+            <li class="footer-list-item">
+                <a href="#">Artists</a>
+            </li>
+            <li class="footer-list-item">
+                <a href="#">Genres</a>
+            </li>
+        </ul>
+    </article>
+    <article class="social-and-copyright">
+        <ul class="social-media-list">
+            <li class="social-media-item">
+                <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+            </li>
+            <li class="social-media-item">
+                <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+            </li>
+            <li class="social-media-item">
+                <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+            </li>
+        </ul>
+        <p>&copy; 2021 Melomy</p>
+    </article>
+</footer>
+
+</body>
+</html>
