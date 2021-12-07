@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melomy - Add Artist</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+<body>
+    <nav th:replace="fragments/commons::navigation"></nav>
+    <main class="admin-main">
+        <article class="add-article">
+            <section class="add-left-col">
+                <img src="/images/leaves-pink.JPG" alt="Add Artist">
+            </section>
+            <section class="add-right-col">
+                <h2>Add Artist</h2>
+                <form th:action="@{/admin/artists/add}" th:method="POST">
+                    <div class="form-row">
+                        <label for="name">Name *</label>
+                        <input type="text" name="name" id="name" placeholder="Enter artist name">
+                    </div>
+                    <div class="form-row">
+                        <label for="description">Description</label>
+                        <input type="text" name="description" id="description" placeholder="Enter description">
+                    </div>
+                    <div class="form-row">
+                        <label for="imageUrl">Image URL *</label>
+                        <input type="text" name="imageUrl" id="imageUrl" placeholder="Enter image URL">
+                    </div>
+                    <div class="form-row">
+                        <label for="genre">Genre</label>
+                        <select  onfocus="this.size=3" onblur='this.size=1;' onchange='this.size=1; this.blur();' name="genre" id="genre">
+                            <option value="" selected>---</option>
+                            <option value="Option 1">Option 1</option>
+                            <option value="Option 2">Option 2</option>
+                            <option value="Option 3">Option 3</option>
+                            <option value="Option 4">Option 4</option>
+                            <option value="Option 1">Option 1</option>
+                            <option value="Option 2">Option 2</option>
+                            <option value="Option 3">Option 3</option>
+                            <option value="Option 4">Option 4</option>
+                            <option value="Option 1">Option 1</option>
+                            <option value="Option 2">Option 2</option>
+                            <option value="Option 3">Option 3</option>
+                            <option value="Option 4">Option 4</option>
+                            <option value="Option 1">Option 1</option>
+                            <option value="Option 2">Option 2</option>
+                            <option value="Option 3">Option 3</option>
+                            <option value="Option 4">Option 4</option>
+                            <option value="Option 1">Option 1</option>
+                            <option value="Option 2">Option 2</option>
+                            <option value="Option 3">Option 3</option>
+                            <option value="Option 4">Option 4</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <input type="submit" value="Add Artist">
+                    </div>
+                </form>
+            </section>
+        </article>
+    </main>
+</body>
+</html>

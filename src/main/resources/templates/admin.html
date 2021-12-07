@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melomy - Admin</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+<body>
+    <nav th:replace="fragments/commons::navigation"></nav>
+    <main class="admin-main">
+        <article class="admin-article">
+            <h1>Melomy Administration</h1>
+            <h2>This page is only visible to administrators and should be used responsibly!</h2>
+            <section class="admin-options">
+                <div class="admin-panel">
+                    <img src="/images/add-artist-image.JPG" alt="Add Artist">
+                    <h3>Add Artist</h3>
+                    <p>Click the button below if you want to add a new artist.</p>
+                    <a class="take-me-there" href="/admin/artists/add">Take me there</a>
+                </div>
+                <div class="admin-panel">
+                    <img src="/images/add-album-image.JPG" alt="Add Album">
+                    <h3>Add Album</h3>
+                    <p>Click the button below if you want to add a new album.</p>
+                    <a class="take-me-there" href="/admin/albums/add">Take me there</a>
+                </div>
+                <div class="admin-panel">
+                    <img src="/images/add-song-image.JPG" alt="Add Song">
+                    <h3>Add Song</h3>
+                    <p>Click the button below if you want to add a new song.</p>
+                    <a class="take-me-there" href="/admin/songs/add">Take me there</a>
+                </div>
+                <div class="admin-panel">
+                    <img src="/images/manage-users-image.JPG" alt="Manage users">
+                    <h3>Manage users</h3>
+                    <p>Click the button below if you want to change a user's role.</p>
+                    <a class="take-me-there" href="#">Take me there</a>
+                </div>
+            </section>
+        </article>
+    </main>
+</body>
+</html>
