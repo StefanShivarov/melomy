@@ -30,6 +30,9 @@
         </th:block>
         <th:block sec:authorize="isAuthenticated()">
             <div class="authenticated">
+                <li sec:authorize="hasRole('ADMIN')" class="navbar-list-item">
+                    <a href="/admin" class="sign-out-btn">Admin</a>
+                </li>
                 <li class="navbar-list-item">
                     <a href="#" class="sign-out-btn">Explore</a>
                 </li>

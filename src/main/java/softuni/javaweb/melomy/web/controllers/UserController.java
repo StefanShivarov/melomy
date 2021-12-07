@@ -1,4 +1,4 @@
-package softuni.javaweb.melomy.web;
+package softuni.javaweb.melomy.web.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -54,23 +54,19 @@ public class UserController {
     @GetMapping("/login")
     public String login(Model model){
 
-        if(!model.containsAttribute("badCredentials")){
-            model.addAttribute("badCredentials", false);
-        }
-
         if(!model.containsAttribute("userName")){
-            model.addAttribute("userName", "");
+            model.addAttribute("badCredentials", false);
+            model.addAttribute("username", "");
         }
 
         return "login";
     }
 
     @GetMapping("/login-error")
-    public String failedLogin(@ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
-                              String userName, RedirectAttributes redirectAttributes){
+    public String failedLogin(@ModelAttribute("username") String username, RedirectAttributes redirectAttributes){
 
         redirectAttributes.addFlashAttribute("badCredentials", true);
-        redirectAttributes.addFlashAttribute("userName", userName);
+        redirectAttributes.addFlashAttribute("username", username);
 
         return "redirect:/users/login";
     }

@@ -3,6 +3,7 @@ package softuni.javaweb.melomy.model.entity;
 import softuni.javaweb.melomy.model.entity.enums.GenreNameEnum;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,6 +16,11 @@ public class GenreEntity extends BaseEntity{
 
     public GenreEntity (){
 
+    }
+
+    public GenreEntity(GenreNameEnum name) {
+        this.name = name;
+        this.artists = new ArrayList<>();
     }
 
     @Column(name = "name", nullable = false, unique = true)

@@ -9,6 +9,7 @@ public class ArtistEntity extends BaseEntity{
 
     private String name;
     private String imageUrl;
+    private String description;
     private List<SongEntity> songs;
     private List<AlbumEntity> albums;
     private List<GenreEntity> genres;
@@ -64,6 +65,16 @@ public class ArtistEntity extends BaseEntity{
 
     public ArtistEntity setGenres(List<GenreEntity> genres) {
         this.genres = genres;
+        return this;
+    }
+
+    @Column(name = "description", columnDefinition = "LONGTEXT")
+    public String getDescription() {
+        return description;
+    }
+
+    public ArtistEntity setDescription(String description) {
+        this.description = description;
         return this;
     }
 }
