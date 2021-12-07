@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -21,11 +23,15 @@
                     <h1>Log in</h1>
 
                 </div>
-                <form action="" class="sign-up-form">
+                <form th:action="@{/users/login}" th:method="POST" class="sign-up-form">
+
+                    <p th:if="${badCredentials}" class="error-message">
+                        Invalid username or password.
+                    </p>
 
                     <div class="form-row">
                         <label for="username">Username</label>
-                        <input type="text" name="username" id="username" placeholder="Enter your username">
+                        <input th:value="${userName}" type="text" name="username" id="username" placeholder="Enter your username">
                     </div>
 
                     <div class="form-row">
@@ -40,7 +46,7 @@
                 <h4>Don't have an account yet? Create one <a href="#">here</a>.</h4>
             </section>
             <section class="mouse-image-section">
-                <img src="/img/melomy_space-01.jpg" alt="Login image">
+                <img src="/images/melomy_space-01.jpg" alt="Login image">
             </section>
         </div>
     </main>

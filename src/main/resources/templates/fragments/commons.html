@@ -12,31 +12,38 @@
         <a class="logo-title" href="/">Melomy</a>
     </article>
     <ul class="navbar-list">
-        <div class="unauthenticated">
-            <li class="navbar-list-item">
-                <a href="#">About</a>
-            </li>
-            <li class="navbar-list-item">
-                <a href="#">Support</a>
-            </li>
-            <li class="navbar-list-item">
-                <a class="sign-up-btn" href="/users/sign-up">Sign up</a>
-            </li>
-            <li class="navbar-list-item">
-                <a class="login-btn" href="/users/login">Log in</a>
-            </li>
-        </div>
-        <div class="authenticated">
-            <li class="navbar-list-item">
-                <a href="#" class="sign-out-btn">Explore</a>
-            </li>
-            <li class="navbar-list-item">
-                <a href="#" class="sign-out-btn">My music</a>
-            </li>
-            <li class="navbar-list-item">
-                <a href="#" class="sign-out-btn">Sign out</a>
-            </li>
-        </div>
+        <th:block sec:authorize="!isAuthenticated()">
+            <div class="unauthenticated">
+                <li class="navbar-list-item">
+                    <a href="#">About</a>
+                </li>
+                <li class="navbar-list-item">
+                    <a href="#">Support</a>
+                </li>
+                <li class="navbar-list-item">
+                    <a class="sign-up-btn" href="/users/sign-up">Sign up</a>
+                </li>
+                <li class="navbar-list-item">
+                    <a class="login-btn" href="/users/login">Log in</a>
+                </li>
+            </div>
+        </th:block>
+        <th:block sec:authorize="isAuthenticated()">
+            <div class="authenticated">
+                <li class="navbar-list-item">
+                    <a href="#" class="sign-out-btn">Explore</a>
+                </li>
+                <li class="navbar-list-item">
+                    <a href="#" class="sign-out-btn">My music</a>
+                </li>
+                <li class="navbar-list-item">
+                    <a sec:authentication="name" href="#" class="sign-out-btn">Username</a>
+                </li>
+                <li class="navbar-list-item">
+                    <a href="/users/logout" class="sign-out-btn">Sign out</a>
+                </li>
+            </div>
+        </th:block>
     </ul>
 </nav>
 

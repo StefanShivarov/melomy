@@ -1,5 +1,6 @@
 package softuni.javaweb.melomy.web;
 
+import org.springframework.security.access.expression.SecurityExpressionRoot;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 

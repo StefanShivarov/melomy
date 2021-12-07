@@ -9,6 +9,7 @@ import java.util.Set;
 public class UserEntity extends BaseEntity{
 
     private String username;
+    private String fullName;
     private String email;
     private String password;
     private String imageUrl;
@@ -28,6 +29,16 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setUsername(String username) {
         this.username = username;
+        return this;
+    }
+
+    @Column(name = "full_name", nullable = false)
+    public String getFullName() {
+        return fullName;
+    }
+
+    public UserEntity setFullName(String fullName) {
+        this.fullName = fullName;
         return this;
     }
 

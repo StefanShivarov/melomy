@@ -58,9 +58,7 @@ main{
     justify-content: space-around;
     width: 100%;
 }
-.unauthenticated{
-    display: none;
-}
+
 
 .navbar-list-item{
     list-style: none;
@@ -134,7 +132,7 @@ main{
     text-align: center;
     height: 100%;
     width: 100%;
-    background-image: url("../img/melomy_landing_bubbles-01.jpg");
+    background-image: url("../images/melomy_landing_bubbles-01.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -700,4 +698,10 @@ footer h1{
 .comment-article input[type="submit"]:hover{
     background-color: #97cbfc;
     color: #0c0f46;
+}
+
+.error-message{
+    font-size: 20px;
+    color: red;
+    margin-bottom: 15px;
 }

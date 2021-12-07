@@ -2,6 +2,7 @@ package softuni.javaweb.melomy.model.entity;
 
 import softuni.javaweb.melomy.model.entity.enums.RoleNameEnum;
 
+import javax.management.relation.Role;
 import javax.persistence.*;
 
 @Entity
@@ -14,8 +15,12 @@ public class RoleEntity extends BaseEntity{
 
     }
 
+    public RoleEntity(RoleNameEnum name){
+        this.name = name;
+    }
+
     @Column(name = "name", nullable = false, unique = true)
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     public RoleNameEnum getName() {
         return name;
     }

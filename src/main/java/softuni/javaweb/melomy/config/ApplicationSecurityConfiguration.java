@@ -23,12 +23,12 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.
+                csrf().disable().
                 authorizeRequests().
                 // with this line we allow access to all static resources
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 // the next line allows access to the home page, login page and registration for everyone
-                        antMatchers("/", "/users/login", "/users/sign-up").permitAll().
-                        antMatchers("/songs/**").permitAll().
+                        antMatchers("/", "/users/login", "/users/sign-up").anonymous().
                 // next we forbid all other pages for unauthenticated users.
                         antMatchers("/**").authenticated().
                 and().
@@ -43,7 +43,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 // the name of the <input...> HTML filed that keeps the password
                         passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
                 // The place where we should land in case that the login is successful
-                        defaultSuccessUrl("/").
+                        defaultSuccessUrl("/dashboard").
                 // the place where I should land if the login is NOT successful
                         failureForwardUrl("/users/login-error").
                 and().
@@ -68,6 +68,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
         auth.
                 userDetailsService(userDetailsService).
                 passwordEncoder(passwordEncoder);
+
 
         // registration:
         // topsecretpass -> password encoder -> kfskjhfkjshfkjdshfkjdsh (hashed pwd)

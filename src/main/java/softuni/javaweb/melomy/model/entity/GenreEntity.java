@@ -18,7 +18,7 @@ public class GenreEntity extends BaseEntity{
     }
 
     @Column(name = "name", nullable = false, unique = true)
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     public GenreNameEnum getName() {
         return name;
     }
