@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melomy - Search albums</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav th:replace="fragments/commons::navigation"></nav>
+    <main class="endless">
+        <article class="search-article">
+            <section class="search-form">
+                <h2>Search for albums</h2>
+                <form th:action="@{/albums/search}">
+                    <input type="text" name="input" id="input" placeholder="Search for albums">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </section>
+            <section class="search-results">
+                <div class="song-panel">
+                    <div class="image-container">
+                        <a class="music-icon" href="https://www.youtube.com"><img
+                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
+                                alt="Name of song"></a>
+                    </div>
+                    <h4 class="song-title">Live Forever</h4>
+                    <p class="song-artist-desc">Song • Oasis</p>
+                </div>
+                <div class="song-panel">
+                    <div class="image-container">
+                        <a class="music-icon" href="https://www.youtube.com"><img
+                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
+                                alt="Name of song"></a>
+                    </div>
+                    <h4 class="song-title">Live Forever</h4>
+                    <p class="song-artist-desc">Song • Oasis</p>
+                </div>
+                <div class="song-panel">
+                    <div class="image-container">
+                        <a class="music-icon" href="https://www.youtube.com"><img
+                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
+                                alt="Name of song"></a>
+                    </div>
+                    <h4 class="song-title">Live Forever</h4>
+                    <p class="song-artist-desc">Song • Oasis</p>
+                </div>
+                <div class="song-panel">
+                    <div class="image-container">
+                        <a class="music-icon" href="https://www.youtube.com"><img
+                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
+                                alt="Name of song"></a>
+                    </div>
+                    <h4 class="song-title">Live Forever</h4>
+                    <p class="song-artist-desc">Song • Oasis</p>
+                </div>
+                <div class="song-panel">
+                    <div class="image-container">
+                        <a class="music-icon" href="https://www.youtube.com"><img
+                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
+                                alt="Name of song"></a>
+                    </div>
+                    <h4 class="song-title">Live Forever</h4>
+                    <p class="song-artist-desc">Song • Oasis</p>
+                </div>
+                <div class="song-panel">
+                    <div class="image-container">
+                        <a class="music-icon" href="https://www.youtube.com"><img
+                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
+                                alt="Name of song"></a>
+                    </div>
+                    <h4 class="song-title">Live Forever</h4>
+                    <p class="song-artist-desc">Song • Oasis</p>
+                </div>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>
