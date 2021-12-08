@@ -49,13 +49,13 @@ main{
 
 .navbar-list{
     display: flex;
-    width: 50%;
-    justify-content: center;
+    width: 40%;
+    justify-content: space-between;
 }
 
 .unauthenticated, .authenticated{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     width: 100%;
 }
 
@@ -360,11 +360,12 @@ footer h1{
 
 .dashboard-wrapper{
     width: 100%;
-    /* height: 100%; */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     padding: 30px 70px;
     background: #363ea3;
+    overflow: auto;
 }
 
 .dashboard-article{
@@ -426,6 +427,7 @@ footer h1{
     max-width: 250px;
     margin-right: 2.85%;
     /* border-radius: 25px; */
+    margin-bottom: 20px;
 }
 
 .song-panel:last-of-type{
@@ -507,15 +509,22 @@ footer h1{
     color: #fca128;
 }
 
-.album-description h3{
+.album-description .link-to-artist{
     font-size: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     color: #c3c6e9;
+    text-decoration: none;
+
+}
+
+.album-description .link-to-artist:hover{
+    color: #fca128;
 }
 
 .album-description p{
     font-size: 20px;
     color: #c3c6e9;
+    margin: 30px 0;
 }
 
 .album-songs{
@@ -583,6 +592,7 @@ footer h1{
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
     padding: 50px;
+    width: 70%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -607,9 +617,9 @@ footer h1{
 
 
 .artist-image-cover{
-    width: 100%;
+    width: 30%;
     height: 100%;
-    min-width: 200px;
+    /*min-width: 200px;*/
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
 }
@@ -704,6 +714,14 @@ footer h1{
     justify-content: center;
     background-color: #0c0f46;
     height: 100vh;
+}
+
+.endless{
+    display: flex;
+    justify-content: center;
+    background-color: #0c0f46;
+    overflow: auto;
+    min-height: 100vh;
 }
 
 .admin-article{
@@ -840,3 +858,68 @@ select{
 select option:hover{
     background: #363ea3;
 }
+
+.search-article{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    text-align:  center;
+}
+
+.search-results{
+    display: flex;
+}
+
+.search-article h2{
+    font-size: 50px;
+    color: #97cbfc;
+    margin-bottom: 15px;
+}
+
+.search-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.search-form form{
+    width: 50%;
+    display: flex;
+
+}
+
+.search-form input[type="text"]{
+
+    padding: 15px;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    background-color: #97cbfc;
+    color: #0c0f46;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-right: 0px;
+    width: 80%;
+}
+
+.search-form button[type="submit"]{
+    padding: 15px;
+    font-size: 15px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    outline: none;
+    border: none;
+    background-color: #363ea3;
+    color: #fca128;
+    cursor: pointer;
+    width: 20%;
+}
+
+.search-results{
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+

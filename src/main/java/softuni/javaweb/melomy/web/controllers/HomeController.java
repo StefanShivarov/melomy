@@ -25,6 +25,10 @@ public class HomeController {
         }
     }
 
+    @GetMapping("/explore")
+    public String explore(){
+        return "explore";
+    }
 //    @GetMapping("/dashboard")
 //    public String dashboard(){
 //        return "dashboard";

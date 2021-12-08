@@ -12,7 +12,7 @@ public class GenreEntity extends BaseEntity{
 
     private GenreNameEnum name;
     private String description;
-    private List<ArtistEntity> artists;
+//    private List<ArtistEntity> artists;
 
     public GenreEntity (){
 
@@ -20,7 +20,6 @@ public class GenreEntity extends BaseEntity{
 
     public GenreEntity(GenreNameEnum name) {
         this.name = name;
-        this.artists = new ArrayList<>();
     }
 
     @Column(name = "name", nullable = false, unique = true)
@@ -44,13 +43,13 @@ public class GenreEntity extends BaseEntity{
         return this;
     }
 
-    @ManyToMany
-    public List<ArtistEntity> getArtists() {
-        return artists;
-    }
-
-    public GenreEntity setArtists(List<ArtistEntity> artists) {
-        this.artists = artists;
-        return this;
-    }
+//    @ManyToMany
+//    public List<ArtistEntity> getArtists() {
+//        return artists;
+//    }
+//
+//    public GenreEntity setArtists(List<ArtistEntity> artists) {
+//        this.artists = artists;
+//        return this;
+//    }
 }

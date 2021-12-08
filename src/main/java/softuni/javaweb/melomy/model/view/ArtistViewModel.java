@@ -4,6 +4,7 @@ import java.util.List;
 
 public class ArtistViewModel {
 
+    private Long id;
     private String name;
     private String imageUrl;
     private String description;
@@ -11,6 +12,15 @@ public class ArtistViewModel {
     private List<AlbumViewModel> albums;
 
     public ArtistViewModel() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public ArtistViewModel setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public String getName() {

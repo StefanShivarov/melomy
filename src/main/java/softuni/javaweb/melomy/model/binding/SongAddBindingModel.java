@@ -1,13 +1,14 @@
 package softuni.javaweb.melomy.model.binding;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class SongAddBindingModel {
 
     private String name;
     private String songUrl;
-    private String album;
+    private Long albumId;
 
     public SongAddBindingModel() {
     }
@@ -32,12 +33,13 @@ public class SongAddBindingModel {
         return this;
     }
 
-    public String getAlbum() {
-        return album;
+    @NotNull
+    public Long getAlbumId() {
+        return albumId;
     }
 
-    public SongAddBindingModel setAlbum(String album) {
-        this.album = album;
+    public SongAddBindingModel setAlbumId(Long albumId) {
+        this.albumId = albumId;
         return this;
     }
 }

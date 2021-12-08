@@ -10,9 +10,9 @@ public class ArtistEntity extends BaseEntity{
     private String name;
     private String imageUrl;
     private String description;
-    private List<SongEntity> songs;
-    private List<AlbumEntity> albums;
-    private List<GenreEntity> genres;
+//    private List<SongEntity> songs;
+//    private List<AlbumEntity> albums;
+    private GenreEntity genre;
 
     public ArtistEntity(){
 
@@ -38,33 +38,33 @@ public class ArtistEntity extends BaseEntity{
         return this;
     }
 
-    @OneToMany(mappedBy = "artist")
-    public List<SongEntity> getSongs() {
-        return songs;
+//    @OneToMany(mappedBy = "artist")
+//    public List<SongEntity> getSongs() {
+//        return songs;
+//    }
+//
+//    public ArtistEntity setSongs(List<SongEntity> songs) {
+//        this.songs = songs;
+//        return this;
+//    }
+//
+//    @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    public List<AlbumEntity> getAlbums() {
+//        return albums;
+//    }
+//
+//    public ArtistEntity setAlbums(List<AlbumEntity> albums) {
+//        this.albums = albums;
+//        return this;
+//    }
+
+    @ManyToOne
+    public GenreEntity getGenre() {
+        return genre;
     }
 
-    public ArtistEntity setSongs(List<SongEntity> songs) {
-        this.songs = songs;
-        return this;
-    }
-
-    @OneToMany(mappedBy = "artist")
-    public List<AlbumEntity> getAlbums() {
-        return albums;
-    }
-
-    public ArtistEntity setAlbums(List<AlbumEntity> albums) {
-        this.albums = albums;
-        return this;
-    }
-
-    @ManyToMany(mappedBy = "artists")
-    public List<GenreEntity> getGenres() {
-        return genres;
-    }
-
-    public ArtistEntity setGenres(List<GenreEntity> genres) {
-        this.genres = genres;
+    public ArtistEntity setGenre(GenreEntity genre) {
+        this.genre = genre;
         return this;
     }
 

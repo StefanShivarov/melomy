@@ -15,8 +15,6 @@ public class UserServiceModel {
     private String email;
     private String password;
     private String imageUrl;
-    private List<SongEntity> favouriteSongs;
-    private List<ArtistEntity> favouriteArtists;
     private Set<RoleEntity> roles;
 
     public UserServiceModel() {
@@ -73,24 +71,6 @@ public class UserServiceModel {
 
     public UserServiceModel setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-        return this;
-    }
-
-    public List<SongEntity> getFavouriteSongs() {
-        return favouriteSongs;
-    }
-
-    public UserServiceModel setFavouriteSongs(List<SongEntity> favouriteSongs) {
-        this.favouriteSongs = favouriteSongs;
-        return this;
-    }
-
-    public List<ArtistEntity> getFavouriteArtists() {
-        return favouriteArtists;
-    }
-
-    public UserServiceModel setFavouriteArtists(List<ArtistEntity> favouriteArtists) {
-        this.favouriteArtists = favouriteArtists;
         return this;
     }
 

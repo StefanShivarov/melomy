@@ -35,7 +35,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 // the next line allows access to the home page, login page and registration for everyone
                         antMatchers( "/users/login", "/users/sign-up", "/users/login-error").anonymous().
                 // next we forbid all other pages for unauthenticated users.
-                        antMatchers("/songs/**", "/albums/**", "/artists/**").authenticated().
+                        antMatchers("/songs/**", "/albums/**", "/artists/**", "/explore").authenticated().
 
                         antMatchers("/songs/add", "/songs/delete/**",
                                 "/albums/add", "albums/delete/**", "/artists/add,",

@@ -1,12 +1,16 @@
 package softuni.javaweb.melomy.model.binding;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 public class AlbumAddBindingModel {
 
     private String name;
     private String imageUrl;
-    private String artist;
+    private String description;
+    private Integer year;
+    private Long artistId;
 
     public AlbumAddBindingModel() {
     }
@@ -31,12 +35,34 @@ public class AlbumAddBindingModel {
         return this;
     }
 
-    public String getArtist() {
-        return artist;
+    public String getDescription() {
+        return description;
     }
 
-    public AlbumAddBindingModel setArtist(String artist) {
-        this.artist = artist;
+
+    public AlbumAddBindingModel setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    @NotNull
+    @Positive
+    public Integer getYear() {
+        return year;
+    }
+
+    public AlbumAddBindingModel setYear(Integer year) {
+        this.year = year;
+        return this;
+    }
+
+    @NotNull
+    public Long getArtistId() {
+        return artistId;
+    }
+
+    public AlbumAddBindingModel setArtistId(Long artistId) {
+        this.artistId = artistId;
         return this;
     }
 }

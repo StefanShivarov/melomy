@@ -16,32 +16,23 @@
 <body>
 <nav th:replace="fragments/commons::navigation"></nav>
 <main class="album-main-wrapper">
-        <article class="album-article">
+        <article th:object="${albumViewModel}" class="album-article">
             <section class="album-info">
                 <div class="album-image-container">
-                    <img class="album-image" src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg" alt="Album Cover">
+                    <img class="album-image" th:src="*{imageUrl}" alt="Album Cover">
                 </div>
                 <div class="album-description">
-                    <h1>Definitely Maybe</h1>
-                    <h3>Album • Oasis</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea inventore hic necessitatibus aliquid
+                    <h1 th:text="*{name}">Definitely Maybe</h1>
+                    <a class="link-to-artist" th:href="@{'/artists/'+*{artistId}+'/details'}" th:text="*{artistName}">Album • Oasis</a>
+                    <p th:text="*{description}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea inventore hic necessitatibus aliquid
                         debitis fugit! Voluptatibus eveniet animi neque perspiciatis modi, amet hic soluta tempore,
                         fugit libero, consequatur voluptate repellat?</p>
                 </div>
             </section>
             <section class="album-songs">
                 <ul>
-                    <li>
-                        <a href="">Song 1</a>
-                    </li>
-                    <li>
-                        <a href="">Song 1</a>
-                    </li>
-                    <li>
-                        <a href="">Song 1</a>
-                    </li>
-                    <li>
-                        <a href="">Song 1</a>
+                    <li th:each="song:${songs}" th:object="${song}">
+                        <a th:text="*{name}" th:href="@{'/songs/'+*{id}+'/details'}">Song 1</a>
                     </li>
                 </ul>
             </section>

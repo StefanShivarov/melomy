@@ -10,19 +10,34 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.javaweb.melomy.model.binding.AlbumAddBindingModel;
 import softuni.javaweb.melomy.model.binding.ArtistAddBindingModel;
 import softuni.javaweb.melomy.model.binding.SongAddBindingModel;
+import softuni.javaweb.melomy.model.service.AlbumServiceModel;
 import softuni.javaweb.melomy.model.service.ArtistServiceModel;
+import softuni.javaweb.melomy.model.service.SongServiceModel;
+import softuni.javaweb.melomy.model.view.AlbumViewModel;
+import softuni.javaweb.melomy.model.view.ArtistViewModel;
+import softuni.javaweb.melomy.model.view.GenreViewModel;
+import softuni.javaweb.melomy.service.AlbumService;
 import softuni.javaweb.melomy.service.ArtistService;
+import softuni.javaweb.melomy.service.GenreService;
+import softuni.javaweb.melomy.service.SongService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
     private final ArtistService artistService;
+    private final GenreService genreService;
+    private final AlbumService albumService;
+    private final SongService songService;
 
-    public AdminController(ArtistService artistService) {
+    public AdminController(ArtistService artistService, GenreService genreService, AlbumService albumService, SongService songService) {
         this.artistService = artistService;
+        this.genreService = genreService;
+        this.albumService = albumService;
+        this.songService = songService;
     }
 
     @GetMapping
@@ -35,9 +50,40 @@ public class AdminController {
         return "add-song";
     }
 
+    @PostMapping("/songs/add")
+    public String addSongConfirm(@Valid SongAddBindingModel songAddBindingModel,
+                                 BindingResult bindingResult, RedirectAttributes redirectAttributes){
+
+        if(bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("songAddBindingModel", songAddBindingModel)
+                    .addFlashAttribute("org.springframework.validation.BindingResult.songAddBindingModel", bindingResult);
+
+            return "redirect:/admin/songs/add";
+        }
+
+        SongServiceModel songServiceModel = songService.addSong(songAddBindingModel);
+        return "redirect:/songs/"+songServiceModel.getId()+"/details";
+    }
+
     @GetMapping("/albums/add")
     public String addAlbum(){
         return "add-album";
+    }
+
+    @PostMapping("/albums/add")
+    public String addAlbumConfirm(@Valid AlbumAddBindingModel albumAddBindingModel,
+                                  BindingResult bindingResult, RedirectAttributes redirectAttributes){
+
+        if(bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("albumAddBindingModel", albumAddBindingModel)
+                    .addFlashAttribute("org.springframework.validation.BindingResult.albumAddBindingModel", bindingResult);
+
+            return "redirect:/admin/albums/add";
+        }
+
+        AlbumServiceModel albumServiceModel = albumService.addAlbum(albumAddBindingModel);
+        return "redirect:/albums/"+albumServiceModel.getId()+"/details";
+
     }
 
     @GetMapping("/artists/add")
@@ -49,11 +95,12 @@ public class AdminController {
     public String addArtistConfirm(@Valid ArtistAddBindingModel artistAddBindingModel,
                                    BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
+
         if(bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("artistAddBindindModel", artistAddBindingModel)
                     .addFlashAttribute("org.springframework.validation.BindingResult.artistAddBindingModel", bindingResult);
 
-            return "redirect:/artists/add";
+            return "redirect:/admin/artists/add";
         }
 
         ArtistServiceModel artistServiceModel = artistService.addArtist(artistAddBindingModel);
@@ -74,4 +121,20 @@ public class AdminController {
     public SongAddBindingModel songAddBindingModel(){
         return new SongAddBindingModel();
     }
+
+    @ModelAttribute("allGenres")
+    public List<GenreViewModel> allGenres(){
+        return genreService.findAllGenres();
+    }
+
+    @ModelAttribute("allArtists")
+    public List<ArtistViewModel> allArtists(){
+        return artistService.findAllArtists();
+    }
+
+    @ModelAttribute("allAlbums")
+    public List<AlbumViewModel> allAlbums(){
+        return albumService.findAllAlbums();
+    }
+
 }

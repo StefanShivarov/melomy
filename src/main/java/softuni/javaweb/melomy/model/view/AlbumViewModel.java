@@ -7,6 +7,8 @@ public class AlbumViewModel {
     private String imageUrl;
     private String description;
     private String artistName;
+    private Integer year;
+    private Long artistId;
 
     public Long getId() {
         return id;
@@ -44,12 +46,30 @@ public class AlbumViewModel {
         return this;
     }
 
+    public Integer getYear() {
+        return year;
+    }
+
+    public AlbumViewModel setYear(Integer year) {
+        this.year = year;
+        return this;
+    }
+
     public String getArtistName() {
         return artistName;
     }
 
     public AlbumViewModel setArtistName(String artistName) {
         this.artistName = artistName;
+        return this;
+    }
+
+    public Long getArtistId() {
+        return artistId;
+    }
+
+    public AlbumViewModel setArtistId(Long artistId) {
+        this.artistId = artistId;
         return this;
     }
 }

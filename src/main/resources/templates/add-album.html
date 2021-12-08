@@ -20,40 +20,41 @@
             </section>
             <section class="add-right-col">
                 <h2>Add Album</h2>
-                <form action="">
+                <form th:action="@{/admin/albums/add}" th:method="POST" th:object="${albumAddBindingModel}">
                     <div class="form-row">
                         <label for="name">Name *</label>
-                        <input type="text" name="name" id="name" placeholder="Enter album name">
+                        <input th:field="*{name}" type="text" name="name" id="name" placeholder="Enter album name">
+                        <p th:if="${#fields.hasErrors('name')}" class="error-message">
+                            Name cannot be empty.
+                        </p>
+                    </div>
+                    <div class="form-row">
+                        <label for="description">Description</label>
+                        <input th:field="*{description}" type="text" name="description" id="description" placeholder="Enter description">
+                    </div>
+                    <div class="form-row">
+                        <label for="year">Year</label>
+                        <input th:field="*{year}" type="text" name="year" id="year" placeholder="Enter year">
+                        <p th:if="${#fields.hasErrors('year')}" class="error-message">
+                            Invalid year input.
+                        </p>
                     </div>
                     <div class="form-row">
                         <label for="imageUrl">Cover Image URL *</label>
-                        <input type="text" name="imageUrl" id="imageUrl" placeholder="Enter image URL">
+                        <input th:field="*{imageUrl}" type="text" name="imageUrl" id="imageUrl" placeholder="Enter image URL">
+                        <p th:if="${#fields.hasErrors('imageUrl')}" class="error-message">
+                            Image URL cannot be empty.
+                        </p>
                     </div>
                     <div class="form-row">
                         <label for="artist">Artist</label>
-                        <select  onfocus="this.size=3" onblur='this.size=1;' onchange='this.size=1; this.blur();' name="artist" id="artist">
+                        <select th:field="*{artistId}"  onfocus="this.size=3" onblur='this.size=1;' onchange='this.size=1; this.blur();' name="artist" id="artist">
                             <option value="" selected>---</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
+                            <option th:each="a: ${allArtists}" th:value="${a.id}" th:text="${a.name}">Option 1</option>
                         </select>
+                        <p th:if="${#fields.hasErrors('artistId')}" class="error-message">
+                            You must choose an existing artist.
+                        </p>
                     </div>
                     <div class="form-row">
                         <input type="submit" value="Add Album">

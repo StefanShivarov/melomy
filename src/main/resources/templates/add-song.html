@@ -20,39 +20,26 @@
             </section>
             <section class="add-right-col">
                 <h2>Add Song</h2>
-                <form action="">
+                <form th:action="@{/admin/songs/add}" th:method="POST" th:object="${songAddBindingModel}">
                     <div class="form-row">
                         <label for="name">Name *</label>
-                        <input type="text" name="name" id="name" placeholder="Enter song name">
+                        <input th:field="*{name}" type="text" name="name" id="name" placeholder="Enter song name">
+                        <p th:if="${#fields.hasErrors('name')}" class="error-message">
+                            Name cannot be empty.
+                        </p>
                     </div>
                     <div class="form-row">
                         <label for="songUrl">Song URL *</label>
-                        <input type="text" name="songUrl" id="songUrl" placeholder="Enter song URL">
+                        <input th:field="*{songUrl}" type="text" name="songUrl" id="songUrl" placeholder="Enter song URL">
+                        <p th:if="${#fields.hasErrors('songUrl')}" class="error-message">
+                            Song URL cannot be empty.
+                        </p>
                     </div>
                     <div class="form-row">
                         <label for="album">Album</label>
-                        <select  onfocus="this.size=3" onblur='this.size=1;' onchange='this.size=1; this.blur();' name="album" id="album">
+                        <select th:field="*{albumId}" onfocus="this.size=3" onblur='this.size=1;' onchange='this.size=1; this.blur();' name="album" id="album">
                             <option value="" selected>---</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
+                            <option th:each="album:${allAlbums}" th:value="${album.id}" th:text="${album.name}">Option 1</option>
                         </select>
                     </div>
                     <div class="form-row">

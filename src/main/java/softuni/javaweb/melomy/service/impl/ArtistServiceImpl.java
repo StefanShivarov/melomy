@@ -8,10 +8,12 @@ import softuni.javaweb.melomy.model.service.ArtistServiceModel;
 import softuni.javaweb.melomy.model.view.ArtistViewModel;
 import softuni.javaweb.melomy.repository.ArtistRepository;
 import softuni.javaweb.melomy.repository.GenreRepository;
+import softuni.javaweb.melomy.service.AlbumService;
 import softuni.javaweb.melomy.service.ArtistService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ArtistServiceImpl implements ArtistService {
@@ -19,11 +21,13 @@ public class ArtistServiceImpl implements ArtistService {
     private final ModelMapper modelMapper;
     private final ArtistRepository artistRepository;
     private final GenreRepository genreRepository;
+    private final AlbumService albumService;
 
-    public ArtistServiceImpl(ModelMapper modelMapper, ArtistRepository artistRepository, GenreRepository genreRepository) {
+    public ArtistServiceImpl(ModelMapper modelMapper, ArtistRepository artistRepository, GenreRepository genreRepository, AlbumService albumService) {
         this.modelMapper = modelMapper;
         this.artistRepository = artistRepository;
         this.genreRepository = genreRepository;
+        this.albumService = albumService;
     }
 
     @Override
@@ -31,9 +35,8 @@ public class ArtistServiceImpl implements ArtistService {
 
         ArtistServiceModel artistServiceModel = modelMapper.map(artistAddBindingModel, ArtistServiceModel.class);
         ArtistEntity artistEntity = modelMapper.map(artistServiceModel, ArtistEntity.class)
-                .setGenres(List.of(genreRepository.findByName(artistServiceModel.getGenre())))
-                .setAlbums(new ArrayList<>())
-                .setSongs(new ArrayList<>());
+                .setGenre(genreRepository.findByName(artistServiceModel.getGenre()));
+
 
         ArtistEntity savedEntity = artistRepository.save(artistEntity);
         return modelMapper.map(savedEntity, ArtistServiceModel.class);
@@ -49,9 +52,35 @@ public class ArtistServiceImpl implements ArtistService {
         return artistViewModel;
     }
 
+    @Override
+    public List<ArtistViewModel> searchByNameContaining(String input) {
+        return artistRepository
+                .findAllByNameContaining(input)
+                .stream()
+                .map(this::mapToViewModel)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ArtistViewModel> findAllArtists() {
+        return artistRepository
+                .findAll()
+                .stream()
+                .map(this::mapToViewModel)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public ArtistEntity getArtistById(Long id) {
+        return artistRepository
+                .findById(id)
+                .orElse(null);
+    }
+
+
     private ArtistViewModel mapToViewModel(ArtistEntity artistEntity){
         ArtistViewModel artistViewModel = modelMapper.map(artistEntity, ArtistViewModel.class)
-                .setGenre(artistEntity.getGenres().get(0).getName().name());
+                .setGenre(artistEntity.getGenre().getName().name());
 
         return artistViewModel;
     }

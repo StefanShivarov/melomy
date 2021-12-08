@@ -5,11 +5,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import softuni.javaweb.melomy.model.binding.UserLoginBindingModel;
 import softuni.javaweb.melomy.model.binding.UserSignUpBindingModel;
 import softuni.javaweb.melomy.model.service.UserServiceModel;
 import softuni.javaweb.melomy.service.UserService;
@@ -54,19 +52,14 @@ public class UserController {
     @GetMapping("/login")
     public String login(Model model){
 
-        if(!model.containsAttribute("userName")){
-            model.addAttribute("badCredentials", false);
-            model.addAttribute("username", "");
-        }
-
         return "login";
     }
 
     @GetMapping("/login-error")
-    public String failedLogin(@ModelAttribute("username") String username, RedirectAttributes redirectAttributes){
+    public String failedLogin(@ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY) String userName, RedirectAttributes redirectAttributes){
 
         redirectAttributes.addFlashAttribute("badCredentials", true);
-        redirectAttributes.addFlashAttribute("username", username);
+        redirectAttributes.addFlashAttribute("username", userName);
 
         return "redirect:/users/login";
     }
@@ -75,5 +68,7 @@ public class UserController {
     public UserSignUpBindingModel userModel(){
         return new UserSignUpBindingModel();
     }
+
+
 
 }

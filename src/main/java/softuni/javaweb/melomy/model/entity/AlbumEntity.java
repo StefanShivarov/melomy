@@ -10,7 +10,8 @@ public class AlbumEntity extends BaseEntity{
     private String name;
     private String imageUrl;
     private String description;
-    private List<SongEntity> songs;
+    private Integer year;
+//    private List<SongEntity> songs;
     private ArtistEntity artist;
 
     public AlbumEntity(){
@@ -37,15 +38,24 @@ public class AlbumEntity extends BaseEntity{
         return this;
     }
 
-    @OneToMany
-    public List<SongEntity> getSongs() {
-        return songs;
+    @Column(name = "year", nullable = false)
+    public Integer getYear() {
+        return year;
     }
 
-    public AlbumEntity setSongs(List<SongEntity> songs) {
-        this.songs = songs;
+    public AlbumEntity setYear(Integer year) {
+        this.year = year;
         return this;
     }
+//    @OneToMany
+//    public List<SongEntity> getSongs() {
+//        return songs;
+//    }
+//
+//    public AlbumEntity setSongs(List<SongEntity> songs) {
+//        this.songs = songs;
+//        return this;
+//    }
 
     @ManyToOne
     public ArtistEntity getArtist() {

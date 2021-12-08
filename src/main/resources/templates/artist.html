@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Melomy - Dashboard</title>
+    <title>Melomy</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
@@ -15,71 +15,37 @@
 
 <body>
 <nav th:replace="fragments/commons::navigation"></nav>
-<main class="dashboard-wrapper">
+<main th:object="${artistViewModel}" class="dashboard-wrapper">
 
         <article class="artist-info">
             <section class="artist-description">
-                <h1>Oasis</h1>
-                <h3>Rock</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quam deleniti voluptates non provident
+                <h1 th:text="*{name}">Oasis</h1>
+                <h3 th:text="*{genre}">Rock</h3>
+                <p th:text="*{description}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quam deleniti voluptates non provident
                     tenetur maxime, vel eaque recusandae molestiae, ratione iusto hic, qui deserunt veritatis neque ipsa
                     quibusdam nesciunt possimus asperiores. Consequuntur alias, animi illum culpa quae veritatis dolorem
                     cum placeat saepe voluptate, aspernatur minima excepturi laborum cumque tenetur!</p>
             </section>
             <section class="artist-image-cover">
-                <img src="https://www.nme.com/wp-content/uploads/2020/06/GettyImages-85216701.jpg" alt="Artist Image">
+                <img th:src="*{imageUrl}" alt="Artist Image">
             </section>
         </article>
 
 
         <article class="dashboard-article">
             <h3>Albums</h3>
-            <div class="songs">
-                <div class="song-panel">
+            <div th:object="${albums}" class="songs">
+                <div th:each="album:${albums}" class="song-panel">
                     <div class="image-container">
-                        <a class="music-icon" href="https://www.youtube.com"><img
-                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
-                                alt="Name of song"></a>
+                        <a class="music-icon" th:href="@{'/albums/'+${album.id}+'/details'}">
+                            <img
+                                th:src="${album.imageUrl}"
+                                alt="Album cover"></a>
                     </div>
-                    <h4 class="song-title">Live Forever</h4>
-                    <p class="song-artist-desc">Song • Oasis</p>
+                    <h4 th:text="${album.name}" class="song-title">Live Forever</h4>
+                    <p th:text="'Album • '+${album.year}" class="song-artist-desc">year</p>
                 </div>
-                <div class="song-panel">
-                    <div class="image-container">
-                        <a class="music-icon" href="https://www.youtube.com"><img
-                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
-                                alt="Name of song"></a>
-                    </div>
-                    <h4 class="song-title">Live Forever</h4>
-                    <p class="song-artist-desc">Song • Oasis</p>
-                </div>
-                <div class="song-panel">
-                    <div class="image-container">
-                        <a class="music-icon" href="https://www.youtube.com"><img
-                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
-                                alt="Name of song"></a>
-                    </div>
-                    <h4 class="song-title">Live Forever</h4>
-                    <p class="song-artist-desc">Song • Oasis</p>
-                </div>
-                <div class="song-panel">
-                    <div class="image-container">
-                        <a class="music-icon" href="https://www.youtube.com"><img
-                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
-                                alt="Name of song"></a>
-                    </div>
-                    <h4 class="song-title">Live Forever</h4>
-                    <p class="song-artist-desc">Song • Oasis</p>
-                </div>
-                <div class="song-panel">
-                    <div class="image-container">
-                        <a class="music-icon" href="https://www.youtube.com"><img
-                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
-                                alt="Name of song"></a>
-                    </div>
-                    <h4 class="song-title">Live Forever</h4>
-                    <p class="song-artist-desc">Song • Oasis</p>
-                </div>
+
             </div>
         </article>
     </main>

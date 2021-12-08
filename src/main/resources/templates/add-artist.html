@@ -20,43 +20,31 @@
             </section>
             <section class="add-right-col">
                 <h2>Add Artist</h2>
-                <form th:action="@{/admin/artists/add}" th:method="POST">
+                <form th:action="@{/admin/artists/add}" th:method="POST" th:object="${artistAddBindingModel}">
                     <div class="form-row">
                         <label for="name">Name *</label>
-                        <input type="text" name="name" id="name" placeholder="Enter artist name">
+                        <input th:field="*{name}" type="text" name="name" id="name" placeholder="Enter artist name">
+                        <p th:if="${#fields.hasErrors('name')}" class="error-message">
+                            Name cannot be empty.
+                        </p>
                     </div>
                     <div class="form-row">
                         <label for="description">Description</label>
-                        <input type="text" name="description" id="description" placeholder="Enter description">
+                        <input th:field="*{description}" type="text" name="description" id="description" placeholder="Enter description">
+
                     </div>
                     <div class="form-row">
                         <label for="imageUrl">Image URL *</label>
-                        <input type="text" name="imageUrl" id="imageUrl" placeholder="Enter image URL">
+                        <input th:field="*{imageUrl}" type="text" name="imageUrl" id="imageUrl" placeholder="Enter image URL">
+                        <p th:if="${#fields.hasErrors('imageUrl')}" class="error-message">
+                            Image URL cannot be empty.
+                        </p>
                     </div>
                     <div class="form-row">
                         <label for="genre">Genre</label>
-                        <select  onfocus="this.size=3" onblur='this.size=1;' onchange='this.size=1; this.blur();' name="genre" id="genre">
-                            <option value="" selected>---</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                            <option value="Option 4">Option 4</option>
+                        <select th:field="*{genre}" onfocus="this.size=3" onblur='this.size=1;' onchange='this.size=1; this.blur();' name="genre" id="genre">
+                            <option value="default" selected>---</option>
+                            <option th:each="g:${allGenres}" th:value="${g.name}" th:text="${g.name}" value=""></option>
                         </select>
                     </div>
                     <div class="form-row">

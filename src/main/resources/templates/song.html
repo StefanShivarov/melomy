@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -13,17 +15,17 @@
 
 <body>
 <nav th:replace="fragments/commons::navigation"></nav>
-<main class="album-main-wrapper">
-        <article class="album-article">
+<main th:object="${songViewModel}" class="album-main-wrapper">
+        <article  class="album-article">
             <section class="player-section">
-                <iframe width="960" height="540" src="https://www.youtube.com/embed/E5DlBU0A61c"
+                <iframe width="960" height="540" th:src="*{songUrl}"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
             </section>
             <section class="song-player-info">
-                <h1>Rock & Roll Star</h1>
-                    <h4>Song • Oasis • Definitely Maybe</h4>
+                <h2 th:text="*{name}">Rock & Roll Star</h2>
+                    <h4 th:text="'Song • '+*{artistName}+' • '+*{albumName}">Song • Oasis • Definitely Maybe</h4>
             </section>
         </article>
         <article class="comment-article">
