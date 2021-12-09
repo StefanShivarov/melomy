@@ -15,6 +15,7 @@
 
 <body>
 <nav th:replace="fragments/commons::navigation"></nav>
+<input type="hidden" name="songId" id="songId" th:value="${songViewModel.id}">
 <main th:object="${songViewModel}" class="album-main-wrapper">
         <article  class="album-article">
             <section class="player-section">
@@ -37,7 +38,7 @@
                     <input type="submit" value="Comment">
                 </form>
             </section>
-            <section class="comments-section">
+            <section id="commentsContainer" class="comments-section">
                 <div class="comment-field">
                     <h4>${username}</h4>
                     <p class="comment-date">${date}</p>
@@ -48,6 +49,7 @@
             </section>
         </article>
     </main>
+    <script th:src="@{/js/comments.js}"></script>
     <!-- <footer>
         <h1>Melomy</h1>
         <article class="footer-info">

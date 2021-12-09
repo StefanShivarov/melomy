@@ -62,12 +62,22 @@ public class SongServiceImpl implements SongService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<SongViewModel> searchByNameContaining(String input) {
+        return songRepository
+                .findAllByNameContaining(input)
+                .stream()
+                .map(this::mapToViewModel)
+                .collect(Collectors.toList());
+    }
+
     private SongViewModel mapToViewModel(SongEntity songEntity){
         return modelMapper.map(songEntity, SongViewModel.class)
                 .setArtistId(songEntity.getArtist().getId())
                 .setAlbumId(songEntity.getAlbum().getId())
                 .setArtistName(songEntity.getArtist().getName())
-                .setAlbumName(songEntity.getAlbum().getName());
+                .setAlbumName(songEntity.getAlbum().getName())
+                .setImageUrl(songEntity.getAlbum().getImageUrl());
 
     }
 }

@@ -19,67 +19,25 @@
         <article class="search-article">
             <section class="search-form">
                 <h2>Search for songs</h2>
-                <form action="">
+                <form th:action="@{/songs/search}" th:method="POST">
                     <input type="text" name="input" id="input" placeholder="Search for songs">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </section>
             <section class="search-results">
-                <div class="song-panel">
+                <div th:each="song:${searchResults}" class="song-panel">
                     <div class="image-container">
-                        <a class="music-icon" href="https://www.youtube.com"><img
-                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
-                                alt="Name of song"></a>
+                        <a class="music-icon" th:href="@{'/songs/'+${song.id}+'/details'}">
+                            <img
+                                th:src="${song.imageUrl}"
+                                alt="Song cover"></a>
                     </div>
-                    <h4 class="song-title">Live Forever</h4>
-                    <p class="song-artist-desc">Song • Oasis</p>
+                    <h4 th:text="${song.name}" class="song-title">Live Forever</h4>
+                    <p th:text="'Song • '+${song.artistName}" class="song-artist-desc">Song • Oasis</p>
                 </div>
-                <div class="song-panel">
-                    <div class="image-container">
-                        <a class="music-icon" href="https://www.youtube.com"><img
-                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
-                                alt="Name of song"></a>
-                    </div>
-                    <h4 class="song-title">Live Forever</h4>
-                    <p class="song-artist-desc">Song • Oasis</p>
-                </div>
-                <div class="song-panel">
-                    <div class="image-container">
-                        <a class="music-icon" href="https://www.youtube.com"><img
-                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
-                                alt="Name of song"></a>
-                    </div>
-                    <h4 class="song-title">Live Forever</h4>
-                    <p class="song-artist-desc">Song • Oasis</p>
-                </div>
-                <div class="song-panel">
-                    <div class="image-container">
-                        <a class="music-icon" href="https://www.youtube.com"><img
-                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
-                                alt="Name of song"></a>
-                    </div>
-                    <h4 class="song-title">Live Forever</h4>
-                    <p class="song-artist-desc">Song • Oasis</p>
-                </div>
-                <div class="song-panel">
-                    <div class="image-container">
-                        <a class="music-icon" href="https://www.youtube.com"><img
-                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
-                                alt="Name of song"></a>
-                    </div>
-                    <h4 class="song-title">Live Forever</h4>
-                    <p class="song-artist-desc">Song • Oasis</p>
-                </div>
-                <div class="song-panel">
-                    <div class="image-container">
-                        <a class="music-icon" href="https://www.youtube.com"><img
-                                src="https://upload.wikimedia.org/wikipedia/en/d/d4/OasisDefinitelyMaybealbumcover.jpg"
-                                alt="Name of song"></a>
-                    </div>
-                    <h4 class="song-title">Live Forever</h4>
-                    <p class="song-artist-desc">Song • Oasis</p>
-                </div>
+
             </section>
+            <h1 th:if="${searchResults.size() == 0}">No results found.</h1>
         </article>
     </main>
 </body>

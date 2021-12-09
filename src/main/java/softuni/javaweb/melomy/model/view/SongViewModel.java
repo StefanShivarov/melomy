@@ -6,6 +6,7 @@ public class SongViewModel {
     private Long id;
     private String name;
     private String songUrl;
+    private String imageUrl;
     private Long artistId;
     private String artistName;
     private Long albumId;
@@ -35,6 +36,15 @@ public class SongViewModel {
 
     public SongViewModel setSongUrl(String songUrl) {
         this.songUrl = songUrl;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public SongViewModel setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 

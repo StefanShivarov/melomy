@@ -1,9 +1,7 @@
 package softuni.javaweb.melomy.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "songs")
@@ -13,6 +11,7 @@ public class SongEntity extends BaseEntity{
     private String songUrl;
     private ArtistEntity artist;
     private AlbumEntity album;
+    private List<CommentEntity> comments;
 
     public SongEntity(){
 
@@ -55,6 +54,16 @@ public class SongEntity extends BaseEntity{
 
     public SongEntity setAlbum(AlbumEntity album) {
         this.album = album;
+        return this;
+    }
+
+    @OneToMany(mappedBy = "song", fetch = FetchType.LAZY)
+    public List<CommentEntity> getComments() {
+        return comments;
+    }
+
+    public SongEntity setComments(List<CommentEntity> comments) {
+        this.comments = comments;
         return this;
     }
 }

@@ -13,4 +13,6 @@ public interface SongService {
     SongViewModel findById(Long id);
 
     List<SongViewModel> findSongsByAlbum(Long albumId);
+
+    List<SongViewModel> searchByNameContaining(String input);
 }

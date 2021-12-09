@@ -34,8 +34,8 @@
                     </div>
                     <h4 th:text="${artist.name}" class="song-title">Oasis</h4>
                 </div>
-
             </section>
+            <h1 th:if="${searchResults.size() == 0}">No results found.</h1>
         </article>
     </main>
 </body>

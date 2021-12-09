@@ -431,7 +431,7 @@ footer h1{
 }
 
 .song-panel:last-of-type{
-    margin: 0;
+    margin-right: 0;
 }
 
 .song-title{
@@ -869,6 +869,12 @@ select option:hover{
 
 .search-results{
     display: flex;
+    align-items: baseline;
+}
+
+.search-article h1{
+    font-size: 50px;
+    color: #97cbfc;
 }
 
 .search-article h2{

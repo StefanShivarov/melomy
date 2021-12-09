@@ -37,14 +37,9 @@ public class ArtistController {
     }
 
     @PostMapping("/search")
-    public String searchArtistsConfirm(Model model, @RequestParam(name = "input") String input, RedirectAttributes redirectAttributes){
+    public String searchArtistsConfirm(@RequestParam(name = "input") String input, RedirectAttributes redirectAttributes){
 
-//        if(model.containsAttribute("searchResults")){
-//            model.addAttribute("searchResults", null);
-//            model.addAttribute("noResults", true);
-//        }
         redirectAttributes.addFlashAttribute("searchResults", artistService.searchByNameContaining(input));
-        redirectAttributes.addFlashAttribute("noResults", artistService.searchByNameContaining(input).size() == 0);
         return "redirect:/artists/search";
     }
 
