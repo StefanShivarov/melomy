@@ -40,7 +40,9 @@
                     <a sec:authentication="name" href="#" class="sign-out-btn">Username</a>
                 </li>
                 <li class="navbar-list-item">
-                    <a href="/users/logout" class="sign-out-btn">Sign out</a>
+                    <form th:action="@{/users/logout}" th:method="POST" id="logout-form">
+                        <input type="submit"  value="Sign out" class="sign-out-btn">
+                    </form>
                 </li>
             </div>
         </th:block>

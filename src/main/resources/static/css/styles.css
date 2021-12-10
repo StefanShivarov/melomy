@@ -79,6 +79,24 @@ main{
     padding: 5px 10px;
 }
 
+.sign-out-btn{
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 500;
+    color: #053869;
+    border: none;
+    outline: none;
+    background: #97cbfc;
+}
+
+.sign-out-btn:hover{
+    text-decoration: none;
+    font-size: 17px;
+    color: #fca128;
+    cursor: pointer;
+
+}
+
 .navbar-list-item a{
     text-decoration: none;
     font-size: 17px;
@@ -679,6 +697,10 @@ footer h1{
     margin: 10px 0px;
 }
 
+.comment-field{
+    margin-bottom: 15px;
+}
+
 .comment-field h4{
     color: #fca128;
 }
@@ -707,6 +729,7 @@ footer h1{
 .comment-article input[type="submit"]:hover{
     background-color: #97cbfc;
     color: #0c0f46;
+    cursor: pointer;
 }
 
 .admin-main{

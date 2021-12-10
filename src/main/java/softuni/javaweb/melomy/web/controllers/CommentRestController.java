@@ -44,7 +44,8 @@ public class CommentRestController {
             @RequestBody @Valid CommentAddBindingModel commentAddBindingModel){
 
        CommentServiceModel commentServiceModel = modelMapper.map(commentAddBindingModel, CommentServiceModel.class);
-       commentServiceModel.setSongId(songId);
+       commentServiceModel.setSongId(songId)
+               .setAuthorName(principal.getUsername());
        CommentViewModel commentViewModel = commentService.createComment(commentServiceModel);
 
        URI locationOfNewComment = URI.create(String.format("/api/%s/comments/%s", songId, commentViewModel.getId()));
@@ -62,4 +63,6 @@ public class CommentRestController {
 
         return ResponseEntity.badRequest().body(apiError);
     }
+
+
 }

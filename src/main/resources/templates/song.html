@@ -4,10 +4,12 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Song name - Melomy</title>
+    <title th:text="${songViewModel.name}+' - Melomy'">Melomy</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
@@ -32,24 +34,18 @@
         <article class="comment-article">
             <section class="add-comment-section">
                 
-                <form action="">
-                    <label for="addComment">Add comment</label>
-                    <textarea name="addComment" id="addComment" cols="30" rows="10" resize="none"></textarea>
-                    <input type="submit" value="Comment">
+                <form id="commentForm" th:action="@{/api/{songId}/comments(songId=${songViewModel.id})}" method="POST">
+                    <label for="message">Add comment</label>
+                    <textarea name="message" id="message" cols="30" rows="10" resize="none"></textarea>
+                    <input id="postComment" type="submit" value="Comment">
                 </form>
             </section>
             <section id="commentsContainer" class="comments-section">
-                <div class="comment-field">
-                    <h4>${username}</h4>
-                    <p class="comment-date">${date}</p>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque est esse autem illo quia, iure
-                        dignissimos eveniet nam sapiente, debitis doloremque, ipsa delectus fuga! Ipsum esse veritatis
-                        voluptatum excepturi officia!</p>
-                </div>
+
             </section>
         </article>
     </main>
-    <script th:src="@{/js/comments.js}"></script>
+    <script th:src="@{/script/comments.js}"></script>
     <!-- <footer>
         <h1>Melomy</h1>
         <article class="footer-info">

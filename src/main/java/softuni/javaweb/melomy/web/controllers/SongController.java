@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import softuni.javaweb.melomy.model.binding.CommentAddBindingModel;
 import softuni.javaweb.melomy.model.view.AlbumViewModel;
 import softuni.javaweb.melomy.model.view.SongViewModel;
 import softuni.javaweb.melomy.service.SongService;
@@ -44,5 +45,10 @@ public class SongController {
     @ModelAttribute("searchResults")
     public List<SongViewModel> searchResults(){
         return new ArrayList<>();
+    }
+
+    @ModelAttribute("commentAddBindingModel")
+    public CommentAddBindingModel commentAddBindingModel(){
+        return new CommentAddBindingModel();
     }
 }

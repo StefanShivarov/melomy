@@ -4,7 +4,7 @@ public class CommentServiceModel {
 
     private Long songId;
     private String message;
-    private String creator;
+    private String authorName;
 
     public Long getSongId() {
         return songId;
@@ -24,12 +24,12 @@ public class CommentServiceModel {
         return this;
     }
 
-    public String getCreator() {
-        return creator;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public CommentServiceModel setCreator(String creator) {
-        this.creator = creator;
+    public CommentServiceModel setAuthorName(String authorName) {
+        this.authorName = authorName;
         return this;
     }
 }

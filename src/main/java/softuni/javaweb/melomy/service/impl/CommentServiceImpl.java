@@ -3,14 +3,19 @@ package softuni.javaweb.melomy.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import softuni.javaweb.melomy.model.entity.CommentEntity;
+import softuni.javaweb.melomy.model.entity.SongEntity;
+import softuni.javaweb.melomy.model.entity.UserEntity;
 import softuni.javaweb.melomy.model.service.CommentServiceModel;
 import softuni.javaweb.melomy.model.view.CommentViewModel;
 import softuni.javaweb.melomy.repository.CommentRepository;
 import softuni.javaweb.melomy.repository.SongRepository;
+import softuni.javaweb.melomy.repository.UserRepository;
 import softuni.javaweb.melomy.service.CommentService;
 import softuni.javaweb.melomy.web.exceptions.ObjectNotFoundException;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,11 +25,13 @@ public class CommentServiceImpl implements CommentService {
     private final ModelMapper modelMapper;
     private final CommentRepository commentRepository;
     private final SongRepository songRepository;
+    private final UserRepository userRepository;
 
-    public CommentServiceImpl(ModelMapper modelMapper, CommentRepository commentRepository, SongRepository songRepository) {
+    public CommentServiceImpl(ModelMapper modelMapper, CommentRepository commentRepository, SongRepository songRepository, UserRepository userRepository) {
         this.modelMapper = modelMapper;
         this.commentRepository = commentRepository;
         this.songRepository = songRepository;
+        this.userRepository = userRepository;
     }
 
     @Transactional
@@ -49,8 +56,22 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public CommentViewModel createComment(CommentServiceModel commentServiceModel) {
 
-        //TODO implement addCommentLogic
-        return null;
+        SongEntity songEntity = songRepository
+                .findById(commentServiceModel.getSongId())
+                .orElseThrow(()->new ObjectNotFoundException("Song with id "+commentServiceModel.getSongId()+" not found!"));
+
+        UserEntity userEntity = userRepository.
+                findByUsername(commentServiceModel.getAuthorName())
+                .orElseThrow(()-> new ObjectNotFoundException("User with username "+commentServiceModel.getAuthorName()+" not found!"));
+
+        CommentEntity commentEntity = new CommentEntity()
+                .setContent(commentServiceModel.getMessage())
+                .setCreated(LocalDateTime.now())
+                .setAuthor(userEntity)
+                .setSong(songEntity);
+
+        CommentEntity savedComment = commentRepository.save(commentEntity);
+        return mapToViewModel(savedComment);
     }
 
     private CommentViewModel mapToViewModel(CommentEntity commentEntity){
@@ -59,7 +80,7 @@ public class CommentServiceImpl implements CommentService {
 
         commentViewModel
                 .setId(commentEntity.getId())
-                .setCreated(commentEntity.getCreated())
+                .setCreated(commentEntity.getCreated().format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm:ss")))
                 .setMessage(commentEntity.getContent())
                 .setAuthorName(commentEntity.getAuthor().getUsername());
 
