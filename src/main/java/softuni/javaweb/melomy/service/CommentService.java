@@ -10,4 +10,6 @@ public interface CommentService {
     List<CommentViewModel> getCommentsBySong(Long songId);
 
     CommentViewModel createComment(CommentServiceModel commentServiceModel);
+
+    void deleteAllCommentsBySong(Long songId);
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melomy - Stats</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav th:replace="fragments/commons::navigation"></nav>
+    <main class="admin-main">
+        <article class="stats-article">
+            <h1 class="stats-h1">Statistics</h1>
+            <h3 class="stats-h3">Total Requests: <th:block th:text="${requestCounterStats.getTotalRequests()}"></th:block></h3>
+            <h3 class="stats-h3">Anonymous Requests: <th:block th:text="${requestCounterStats.getAnonymousRequests()}"></th:block></h3>
+            <h3 class="stats-h3">Authorized Requests: <th:block th:text="${requestCounterStats.getAuthorizedRequests()}"></th:block></h3>
+        </article>
+    </main>
+    <footer th:replace="fragments/commons::footer"></footer>
+</body>
+
+</html>

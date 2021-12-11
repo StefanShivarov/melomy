@@ -6,11 +6,10 @@ import softuni.javaweb.melomy.model.binding.SongAddBindingModel;
 import softuni.javaweb.melomy.model.entity.SongEntity;
 import softuni.javaweb.melomy.model.service.SongServiceModel;
 import softuni.javaweb.melomy.model.view.SongViewModel;
-import softuni.javaweb.melomy.repository.AlbumRepository;
-import softuni.javaweb.melomy.repository.ArtistRepository;
 import softuni.javaweb.melomy.repository.SongRepository;
 import softuni.javaweb.melomy.service.AlbumService;
 import softuni.javaweb.melomy.service.ArtistService;
+import softuni.javaweb.melomy.service.CommentService;
 import softuni.javaweb.melomy.service.SongService;
 
 import java.util.List;
@@ -23,12 +22,15 @@ public class SongServiceImpl implements SongService {
     private final AlbumService albumService;
     private final ArtistService artistService;
     private final SongRepository songRepository;
+    private final CommentService commentService;
 
-    public SongServiceImpl(ModelMapper modelMapper, AlbumService albumService, SongRepository songRepository, ArtistService artistService) {
+
+    public SongServiceImpl(ModelMapper modelMapper, AlbumService albumService, SongRepository songRepository, ArtistService artistService, CommentService commentService) {
         this.modelMapper = modelMapper;
         this.albumService = albumService;
         this.artistService = artistService;
         this.songRepository = songRepository;
+        this.commentService = commentService;
     }
 
     @Override
@@ -70,6 +72,14 @@ public class SongServiceImpl implements SongService {
                 .map(this::mapToViewModel)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteSong(Long id) {
+
+        commentService.deleteAllCommentsBySong(id);
+        songRepository.deleteById(id);
+    }
+
 
     private SongViewModel mapToViewModel(SongEntity songEntity){
         return modelMapper.map(songEntity, SongViewModel.class)

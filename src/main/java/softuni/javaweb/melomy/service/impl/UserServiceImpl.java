@@ -3,6 +3,7 @@ package softuni.javaweb.melomy.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import softuni.javaweb.melomy.model.entity.RoleEntity;
 import softuni.javaweb.melomy.model.entity.UserEntity;
 import softuni.javaweb.melomy.model.entity.enums.RoleNameEnum;
 import softuni.javaweb.melomy.model.service.UserServiceModel;
@@ -12,6 +13,7 @@ import softuni.javaweb.melomy.service.UserService;
 
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -73,5 +75,16 @@ public class UserServiceImpl implements UserService {
             userRepository.save(genericUser);
         }
 
+    }
+
+    @Override
+    public boolean isAdmin(String username) {
+        return userRepository
+                .findByUsername(username)
+                .get()
+                .getRoles()
+                .stream()
+                .map(RoleEntity::getName)
+                .anyMatch(roleNameEnum -> roleNameEnum == RoleNameEnum.ADMIN);
     }
 }

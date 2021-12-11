@@ -590,6 +590,7 @@ footer h1{
 .song-player-info h4{
     color: #c3c6e9;
     font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .song-player-info p{
@@ -748,9 +749,8 @@ footer h1{
 }
 
 .admin-article{
-
     margin-top: 120px;
-    width: 80%;
+    width: 90%;
     align-items: center;
     text-align: center;
     color: #c3c6e9;
@@ -769,15 +769,29 @@ footer h1{
     height: 70%;
 }
 
+.explore-options{
+    justify-content: center;
+}
+
+
+
 .admin-panel{
     height: 90%;
     background: #053869;
-    width: 22%;
+    width: 17%;
     padding: 20px ;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     border-radius: 25px;
+}
+
+.explore-panel{
+    margin-right: 40px;
+}
+
+.explore-panel:last-of-type{
+    margin-right: 0;
 }
 
 .admin-panel img{
@@ -952,3 +966,36 @@ select option:hover{
     flex-wrap: wrap;
 }
 
+#deleteSongBtn{
+    padding: 15px;
+    background: red;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#deleteSongForm{
+    text-align: right;
+}
+
+.stats-article{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.stats-h1{
+    font-size: 60px;
+    color: #c3c6e9;
+}
+
+.stats-h3{
+    font-size: 30px;
+    color: #c3c6e9;
+}
