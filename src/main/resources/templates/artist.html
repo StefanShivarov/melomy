@@ -29,6 +29,9 @@
             <section class="artist-image-cover">
                 <img th:src="*{imageUrl}" alt="Artist Image">
             </section>
+            <form th:action="@{/artists/{id}/delete(id=*{id})}" sec:authorize="hasRole('ADMIN')" th:method="DELETE" id="deleteSongForm" >
+                <input id="deleteSongBtn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this song?')">
+            </form>
         </article>
 
 

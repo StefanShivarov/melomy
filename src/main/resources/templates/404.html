@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melomy</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav th:replace="fragments/commons::navigation"></nav>
+    <main class="admin-main">
+
+        <article class="stats-article error-article">
+            <h1 class="stats-h1">404</h1>
+            <h1 class="stats-h1">Not Found</h1>
+            <h3 class="stats-h3" th:text="${'Ooops!'}">Ooops! Looks like we can't find what you're looking for.</h3>
+            <a href="/">Back to homepage</a>
+        </article>
+    </main>
+    <footer th:replace="fragments/commons::footer"></footer>
+</body>
+
+</html>

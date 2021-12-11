@@ -11,8 +11,10 @@ import softuni.javaweb.melomy.service.AlbumService;
 import softuni.javaweb.melomy.service.ArtistService;
 import softuni.javaweb.melomy.service.CommentService;
 import softuni.javaweb.melomy.service.SongService;
+import softuni.javaweb.melomy.web.exceptions.ObjectNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,8 +51,13 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public SongViewModel findById(Long id) {
-        return songRepository
-                .findById(id)
+
+        Optional<SongEntity> songOpt = songRepository.findById(id);
+        if(songOpt.isEmpty()){
+            throw new ObjectNotFoundException("The song you're looking for doesn't exist.");
+        }
+
+        return songOpt
                 .map(this::mapToViewModel)
                 .get();
     }

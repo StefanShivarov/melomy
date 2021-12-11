@@ -28,6 +28,9 @@
                         debitis fugit! Voluptatibus eveniet animi neque perspiciatis modi, amet hic soluta tempore,
                         fugit libero, consequatur voluptate repellat?</p>
                 </div>
+                <form th:action="@{/albums/{id}/delete(id=*{id})}" sec:authorize="hasRole('ADMIN')" th:method="DELETE" id="deleteSongForm" >
+                    <input id="deleteSongBtn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this album?')">
+                </form>
             </section>
             <section class="album-songs">
                 <ul>

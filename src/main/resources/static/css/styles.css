@@ -988,6 +988,7 @@ select option:hover{
     height: 100%;
     width: 100%;
     text-align: center;
+    align-items: center;
 }
 
 .stats-h1{
@@ -998,4 +999,24 @@ select option:hover{
 .stats-h3{
     font-size: 30px;
     color: #c3c6e9;
+}
+
+.error-article{
+    height: 60%;
+}
+
+.stats-article a{
+    font-size: 30px;
+    padding: 15px;
+    border-radius: 15px;
+    background: #97cbfc;
+    color: #0c0f46;
+    width: 20%;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.stats-article a:hover{
+    background: #fca128;
+
 }
