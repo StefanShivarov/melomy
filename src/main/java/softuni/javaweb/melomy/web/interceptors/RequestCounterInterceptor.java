@@ -21,4 +21,9 @@ public class RequestCounterInterceptor implements HandlerInterceptor {
         requestCounterService.onRequest();
         return true;
     }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        requestCounterService.addRequestMethod(request.getMethod());
+    }
 }

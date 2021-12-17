@@ -19,4 +19,5 @@ public interface ArtistService {
 
     ArtistEntity getArtistById(Long id);
 
+    void deleteArtist(Long id);
 }

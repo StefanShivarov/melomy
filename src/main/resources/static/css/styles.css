@@ -1005,6 +1005,12 @@ select option:hover{
     height: 60%;
 }
 
+.stats-article div{
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+}
+
 .stats-article a{
     font-size: 30px;
     padding: 15px;
@@ -1018,5 +1024,35 @@ select option:hover{
 
 .stats-article a:hover{
     background: #fca128;
+}
 
+.user-panel{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 100px;
+}
+
+.user-panel a{
+    color: #97cbfc;
+    margin-bottom: 15px;
+    font-size: 40px;
+    text-decoration: none;
+}
+
+.user-panel input[type="submit"]{
+    color: white;
+    background: red;
+    padding: 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.user-panel input[type="submit"].make-admin{
+    color: #0c0f46;
+    background: #fca128;
 }

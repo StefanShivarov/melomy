@@ -7,4 +7,6 @@ public interface RequestCounterService {
     void onRequest();
 
     RequestCounterViewModel getRequestCounterStats();
+
+    void addRequestMethod(String method);
 }

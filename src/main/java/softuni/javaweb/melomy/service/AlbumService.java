@@ -22,4 +22,6 @@ public interface AlbumService {
     List<AlbumViewModel> findAllAlbums();
 
     AlbumEntity getAlbumById(Long id);
+
+    void deleteAlbum(Long id);
 }

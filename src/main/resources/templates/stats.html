@@ -16,9 +16,18 @@
     <main class="admin-main">
         <article class="stats-article">
             <h1 class="stats-h1">Statistics</h1>
-            <h3 class="stats-h3">Total Requests: <th:block th:text="${requestCounterStats.getTotalRequests()}"></th:block></h3>
-            <h3 class="stats-h3">Anonymous Requests: <th:block th:text="${requestCounterStats.getAnonymousRequests()}"></th:block></h3>
-            <h3 class="stats-h3">Authorized Requests: <th:block th:text="${requestCounterStats.getAuthorizedRequests()}"></th:block></h3>
+            <div>
+                <section class="stats-col">
+                    <h3 class="stats-h3">Total Requests: <th:block th:text="${requestCounterStats.getTotalRequests()}"></th:block></h3>
+                    <h3 class="stats-h3">Anonymous Requests: <th:block th:text="${requestCounterStats.getAnonymousRequests()}"></th:block></h3>
+                    <h3 class="stats-h3">Authorized Requests: <th:block th:text="${requestCounterStats.getAuthorizedRequests()}"></th:block></h3>
+                </section>
+                <section class="stats-col">
+                    <h3 class="stats-h3">GET Requests: <th:block th:text="${requestCounterStats.getGetRequests()}"></th:block></h3>
+                    <h3 class="stats-h3">POST Requests: <th:block th:text="${requestCounterStats.getPostRequests()}"></th:block></h3>
+                    <h3 class="stats-h3">DELETE Requests: <th:block th:text="${requestCounterStats.getDeleteRequests()}"></th:block></h3>
+                </section>
+            </div>
         </article>
     </main>
     <footer th:replace="fragments/commons::footer"></footer>

@@ -7,11 +7,13 @@ import softuni.javaweb.melomy.model.entity.RoleEntity;
 import softuni.javaweb.melomy.model.entity.UserEntity;
 import softuni.javaweb.melomy.model.entity.enums.RoleNameEnum;
 import softuni.javaweb.melomy.model.service.UserServiceModel;
+import softuni.javaweb.melomy.model.view.UserViewModel;
 import softuni.javaweb.melomy.repository.RoleRepository;
 import softuni.javaweb.melomy.repository.UserRepository;
 import softuni.javaweb.melomy.service.UserService;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -87,4 +89,24 @@ public class UserServiceImpl implements UserService {
                 .map(RoleEntity::getName)
                 .anyMatch(roleNameEnum -> roleNameEnum == RoleNameEnum.ADMIN);
     }
+
+    @Override
+    public List<UserViewModel> searchByUsernameContaining(String input) {
+        return userRepository
+                .findAllByUsernameContaining(input)
+                .stream()
+                .map(this::mapToViewModel)
+                .collect(Collectors.toList());
+    }
+
+    private UserViewModel mapToViewModel(UserEntity userEntity){
+
+        return modelMapper.map(userEntity, UserViewModel.class)
+                .setRoles(userEntity
+                        .getRoles()
+                        .stream()
+                        .map(roleEntity -> roleEntity.getName().name())
+                        .collect(Collectors.toSet()));
+    }
+
 }

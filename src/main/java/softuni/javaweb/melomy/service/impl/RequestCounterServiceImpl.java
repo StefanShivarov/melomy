@@ -10,7 +10,8 @@ import softuni.javaweb.melomy.service.RequestCounterService;
 @Service
 public class RequestCounterServiceImpl implements RequestCounterService {
 
-    private Integer anonymousRequests = 0, authorizedRequests = 0;
+    private Integer anonymousRequests = 0, authorizedRequests = 0,
+                    getRequests = 0, postRequests = 0, deleteRequests = 0;
 
     @Override
     public void onRequest() {
@@ -26,7 +27,18 @@ public class RequestCounterServiceImpl implements RequestCounterService {
     }
 
     @Override
-    public RequestCounterViewModel getRequestCounterStats() {
-        return new RequestCounterViewModel(authorizedRequests, anonymousRequests);
+    public void addRequestMethod(String method) {
+
+        switch (method){
+            case "GET" -> getRequests++;
+            case "POST" -> postRequests++;
+            case "DELETE" -> deleteRequests++;
+        }
     }
+
+    @Override
+    public RequestCounterViewModel getRequestCounterStats() {
+        return new RequestCounterViewModel(authorizedRequests, anonymousRequests, getRequests, postRequests, deleteRequests);
+    }
+
 }

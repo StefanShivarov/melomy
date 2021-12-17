@@ -3,6 +3,7 @@ package softuni.javaweb.melomy.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import softuni.javaweb.melomy.model.binding.SongAddBindingModel;
+import softuni.javaweb.melomy.model.entity.ArtistEntity;
 import softuni.javaweb.melomy.model.entity.SongEntity;
 import softuni.javaweb.melomy.model.service.SongServiceModel;
 import softuni.javaweb.melomy.model.view.SongViewModel;
@@ -13,6 +14,7 @@ import softuni.javaweb.melomy.service.CommentService;
 import softuni.javaweb.melomy.service.SongService;
 import softuni.javaweb.melomy.web.exceptions.ObjectNotFoundException;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -85,6 +87,14 @@ public class SongServiceImpl implements SongService {
 
         commentService.deleteAllCommentsBySong(id);
         songRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteAllSongsByArtist(Long artistId) {
+
+        songRepository
+                .findAllByArtist_Id(artistId)
+                .forEach(songEntity -> deleteSong(songEntity.getId()));
     }
 
 

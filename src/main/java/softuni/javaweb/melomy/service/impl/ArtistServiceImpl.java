@@ -77,6 +77,16 @@ public class ArtistServiceImpl implements ArtistService {
                 .orElse(null);
     }
 
+    @Override
+    public void deleteArtist(Long id) {
+
+        albumService
+                .findAllAlbumsByArtist(id)
+                .forEach(albumViewModel -> albumService.deleteAlbum(albumViewModel.getId()));
+
+        artistRepository.deleteById(id);
+    }
+
 
     private ArtistViewModel mapToViewModel(ArtistEntity artistEntity){
         ArtistViewModel artistViewModel = modelMapper.map(artistEntity, ArtistViewModel.class)

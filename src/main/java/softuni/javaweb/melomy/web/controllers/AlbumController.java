@@ -1,5 +1,8 @@
 package softuni.javaweb.melomy.web.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +43,17 @@ public class AlbumController {
         model.addAttribute("albumViewModel", albumService.findById(id));
         model.addAttribute("songs", songService.findSongsByAlbum(id));
         return "album";
+    }
+
+    @PreAuthorize("#userServiceImpl.isAdmin(#principal.username)")
+    @DeleteMapping("/{id}/delete")
+    public String deleteSong(@PathVariable(name = "id") Long id, @AuthenticationPrincipal UserDetails principal){
+
+        songService
+                .findSongsByAlbum(id)
+                .forEach(songViewModel -> songService.deleteSong(songViewModel.getId()));
+        albumService.deleteAlbum(id);
+        return "redirect:/albums/search";
     }
 
     @ModelAttribute("searchResults")

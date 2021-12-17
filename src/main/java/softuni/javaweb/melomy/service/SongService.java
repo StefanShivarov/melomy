@@ -17,4 +17,6 @@ public interface SongService {
     List<SongViewModel> searchByNameContaining(String input);
 
     void deleteSong(Long id);
+
+    void deleteAllSongsByArtist(Long artistId);
 }

@@ -19,18 +19,18 @@ public class HomeController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if(principal instanceof UserDetails){
-            return "dashboard";
+            return "explore";
         }else{
             return "index";
         }
     }
 
-    @GetMapping("/explore")
-    public String explore(){
-        return "explore";
-    }
-//    @GetMapping("/dashboard")
-//    public String dashboard(){
-//        return "dashboard";
+//    @GetMapping("/explore")
+//    public String explore(){
+//        return "explore";
 //    }
+////    @GetMapping("/dashboard")
+////    public String dashboard(){
+////        return "dashboard";
+////    }
 }

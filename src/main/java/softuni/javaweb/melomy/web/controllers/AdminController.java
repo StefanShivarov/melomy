@@ -2,10 +2,7 @@ package softuni.javaweb.melomy.web.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.javaweb.melomy.model.binding.AlbumAddBindingModel;
@@ -14,9 +11,7 @@ import softuni.javaweb.melomy.model.binding.SongAddBindingModel;
 import softuni.javaweb.melomy.model.service.AlbumServiceModel;
 import softuni.javaweb.melomy.model.service.ArtistServiceModel;
 import softuni.javaweb.melomy.model.service.SongServiceModel;
-import softuni.javaweb.melomy.model.view.AlbumViewModel;
-import softuni.javaweb.melomy.model.view.ArtistViewModel;
-import softuni.javaweb.melomy.model.view.GenreViewModel;
+import softuni.javaweb.melomy.model.view.*;
 import softuni.javaweb.melomy.service.*;
 
 import javax.validation.Valid;
@@ -30,13 +25,15 @@ public class AdminController {
     private final GenreService genreService;
     private final AlbumService albumService;
     private final SongService songService;
+    private final UserService userService;
     private final RequestCounterService requestCounterService;
 
-    public AdminController(ArtistService artistService, GenreService genreService, AlbumService albumService, SongService songService, RequestCounterService requestCounterService) {
+    public AdminController(ArtistService artistService, GenreService genreService, AlbumService albumService, SongService songService, UserService userService, RequestCounterService requestCounterService) {
         this.artistService = artistService;
         this.genreService = genreService;
         this.albumService = albumService;
         this.songService = songService;
+        this.userService = userService;
         this.requestCounterService = requestCounterService;
     }
 
@@ -115,6 +112,22 @@ public class AdminController {
 
         ArtistServiceModel artistServiceModel = artistService.addArtist(artistAddBindingModel);
         return "redirect:/artists/"+artistServiceModel.getId()+"/details";
+    }
+
+    @GetMapping("/users/manage")
+    public String manageUsers(){
+        return "search-users";
+    }
+
+    @PostMapping("/users/manage")
+    public String searchUsers(@RequestParam(name = "input") String input, RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("searchResults", userService.searchByUsernameContaining(input));
+        return "redirect:/admin/users/manage";
+    }
+
+    @ModelAttribute("searchResults")
+    public List<UserViewModel> searchResults(){
+        return userService.searchByUsernameContaining("");
     }
 
     @ModelAttribute("artistAddBindingModel")

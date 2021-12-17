@@ -50,9 +50,7 @@ public class SongController {
     @PreAuthorize("#userServiceImpl.isAdmin(#principal.username)")
     @DeleteMapping("/{id}/delete")
     public String deleteSong(@PathVariable(name = "id") Long id, @AuthenticationPrincipal UserDetails principal){
-//        if(!userService.isAdmin(principal.getUsername())){
-//            throw new RuntimeException();
-//        }
+
         songService.deleteSong(id);
         return "redirect:/songs/search";
     }

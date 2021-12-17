@@ -12,4 +12,8 @@ public interface SongRepository extends JpaRepository<SongEntity, Long> {
     List<SongEntity> findAllByAlbum_Id(Long albumId);
 
     List<SongEntity> findAllByNameContaining(String input);
+
+    void deleteAllByAlbum_Id(Long albumId);
+
+    List<SongEntity> findAllByArtist_Id(Long artistId);
 }
