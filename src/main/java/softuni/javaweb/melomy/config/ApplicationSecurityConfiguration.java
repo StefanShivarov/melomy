@@ -54,7 +54,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 // the name of the <input...> HTML filed that keeps the password
                         passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
 
-                        failureUrl("/users/login-error").
+                        failureForwardUrl("/users/login-error").
                 // The place where we should land in case that the login is successful
                         defaultSuccessUrl("/").
                 // the place where I should land if the login is NOT successful

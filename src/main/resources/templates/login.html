@@ -23,7 +23,7 @@
                     <h1>Log in</h1>
 
                 </div>
-                <form th:action="@{/users/login}" method="POST" class="sign-up-form">
+                <form th:action="@{/users/login}" th:method="POST" class="sign-up-form">
 
                     <p th:if="${badCredentials}" class="error-message">
                         Invalid username or password.

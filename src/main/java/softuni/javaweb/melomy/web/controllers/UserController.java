@@ -55,7 +55,7 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/login-error")
+    @PostMapping("/login-error")
     public String failedLogin(@ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY) String userName, RedirectAttributes redirectAttributes){
 
         redirectAttributes.addFlashAttribute("badCredentials", true);

@@ -19,20 +19,20 @@
     <main class="endless">
         <article class="search-article">
             <section class="search-form">
-                <h2>Search for artists</h2>
+                <h2>Search by username</h2>
                 <form th:action="@{/admin/users/manage}" th:method="POST">
-                    <input type="text" name="input" id="input" placeholder="Search for artists">
+                    <input type="text" name="input" id="input" placeholder="Search by username">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </section>
             <section class="search-results">
-                <div th:each="user:${searchResults}" class="user-panel">
+                <div th:if="${user.username != #authentication.name}" th:each="user:${searchResults}" class="user-panel">
                     <a th:text="${user.username}">Username</a>
-                    <form th:if="${user.getRoles().size() == 1}" th:action="@{'/admin/users/manage/makeadmin/'+${user.id}}"
+                    <form th:if="${user.getRoles().size() == 1}" th:action="@{/admin/users/{id}/makeadmin(id=${user.id})}"
                         th:method="POST">
                         <input class="make-admin" type="submit" value="Make Admin">
                     </form>
-                    <form th:action="${'/admin/users/manage/delete/'+${user.id}}" th:method="DELETE">
+                    <form th:href="@{/admin/users/{id}/delete(id=${user.id})}" th:method="DELETE">
                         <input type="submit" value="Delete">
                     </form>
                 </div>

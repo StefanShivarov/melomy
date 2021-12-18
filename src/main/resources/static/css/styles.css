@@ -97,6 +97,13 @@ main{
 
 }
 
+.username{
+    font-size: 17px;
+    color: #363ea3;
+    font-weight: 600;
+
+}
+
 .navbar-list-item a{
     text-decoration: none;
     font-size: 17px;

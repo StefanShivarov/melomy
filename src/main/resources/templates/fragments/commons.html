@@ -37,7 +37,7 @@
                     <a href="/" class="sign-out-btn">Explore</a>
                 </li>
                 <li class="navbar-list-item">
-                    <a sec:authentication="name" href="#" class="sign-out-btn">Username</a>
+                    <p sec:authentication="name" class="username">Username</p>
                 </li>
                 <li class="navbar-list-item">
                     <form th:action="@{/users/logout}" th:method="POST" id="logout-form">
