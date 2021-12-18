@@ -45,9 +45,7 @@ public class UserServiceImpl implements UserService {
 
         UserEntity userEntity = modelMapper.map(userServiceModel, UserEntity.class);
         userEntity.setPassword(passwordEncoder.encode(userServiceModel.getPassword()))
-                .setRoles(Set.of(roleRepository.findByName(RoleNameEnum.USER)))
-                .setFavouriteArtists(new ArrayList<>())
-                .setFavouriteSongs(new ArrayList<>());
+                .setRoles(Set.of(roleRepository.findByName(RoleNameEnum.USER)));
 
         userRepository.save(userEntity);
     }
@@ -62,7 +60,6 @@ public class UserServiceImpl implements UserService {
                     .setUsername("melomy_admin")
                     .setEmail("admin@adminov.com")
                     .setPassword(passwordEncoder.encode("adminpass"))
-                    .setImageUrl(null)
                     .setRoles(Set.of(roleRepository.findByName(RoleNameEnum.USER), roleRepository.findByName(RoleNameEnum.ADMIN)));
 
             UserEntity genericUser = new UserEntity()
@@ -70,7 +67,6 @@ public class UserServiceImpl implements UserService {
                     .setUsername("melomy_user")
                     .setEmail("user@user.com")
                     .setPassword(passwordEncoder.encode("userpass"))
-                    .setImageUrl(null)
                     .setRoles(Set.of(roleRepository.findByName(RoleNameEnum.USER)));
 
             userRepository.save(testAdmin);

@@ -3,7 +3,7 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: "jdbc:mysql://localhost:3306/melomy_db?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC&useLegacyDatetimeCode=false"
     username: root
-    password: ${mysql_root_pass}
+    password: Minetanks2407
   servlet:
     multipart:
       max-file-size: 1MB

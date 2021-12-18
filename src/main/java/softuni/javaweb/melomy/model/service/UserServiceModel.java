@@ -14,7 +14,6 @@ public class UserServiceModel {
     private String fullName;
     private String email;
     private String password;
-    private String imageUrl;
     private Set<RoleEntity> roles;
 
     public UserServiceModel() {
@@ -62,15 +61,6 @@ public class UserServiceModel {
 
     public UserServiceModel setPassword(String password) {
         this.password = password;
-        return this;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public UserServiceModel setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
         return this;
     }
 

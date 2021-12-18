@@ -20,11 +20,9 @@ import java.util.List;
 public class SongController {
 
     private final SongService songService;
-    private final UserService userService;
 
-    public SongController(SongService songService, UserService userService) {
+    public SongController(SongService songService) {
         this.songService = songService;
-        this.userService = userService;
     }
 
     @GetMapping("/search")
@@ -41,9 +39,7 @@ public class SongController {
 
     @GetMapping("/{id}/details")
     public String songDetails(@PathVariable(name = "id") Long id, Model model){
-
         model.addAttribute("songViewModel", songService.findById(id));
-
         return "song";
     }
 
@@ -52,17 +48,13 @@ public class SongController {
     public String deleteSong(@PathVariable(name = "id") Long id, @AuthenticationPrincipal UserDetails principal){
 
         songService.deleteSong(id);
-        return "redirect:/songs/search";
-    }
-
+        return "redirect:/songs/search";}
 
     @ModelAttribute("searchResults")
     public List<SongViewModel> searchResults(){
         return new ArrayList<>();
     }
-
     @ModelAttribute("commentAddBindingModel")
     public CommentAddBindingModel commentAddBindingModel(){
         return new CommentAddBindingModel();
-    }
-}
+    }}

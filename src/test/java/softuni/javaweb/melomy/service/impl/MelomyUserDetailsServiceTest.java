@@ -70,4 +70,6 @@ public class MelomyUserDetailsServiceTest {
         Assertions.assertEquals(actual.getUsername(), testUser.getUsername(), "Username doesn't match!");
         Assertions.assertEquals(actualRoles, expectedRoles, "Roles don't match!");
     }
+
+
 }

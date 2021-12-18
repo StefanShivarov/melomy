@@ -104,7 +104,7 @@ public class AdminController {
 
 
         if(bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("artistAddBindindModel", artistAddBindingModel)
+            redirectAttributes.addFlashAttribute("artistAddBindingModel", artistAddBindingModel)
                     .addFlashAttribute("org.springframework.validation.BindingResult.artistAddBindingModel", bindingResult);
 
             return "redirect:/admin/artists/add";

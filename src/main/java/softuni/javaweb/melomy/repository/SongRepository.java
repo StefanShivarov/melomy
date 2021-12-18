@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import softuni.javaweb.melomy.model.entity.SongEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface SongRepository extends JpaRepository<SongEntity, Long> {
@@ -16,4 +17,6 @@ public interface SongRepository extends JpaRepository<SongEntity, Long> {
     void deleteAllByAlbum_Id(Long albumId);
 
     List<SongEntity> findAllByArtist_Id(Long artistId);
+
+    Optional<SongEntity> findByNameAndAlbum_Name(String name, String albumName);
 }

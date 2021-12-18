@@ -11,7 +11,6 @@ public class UserSignUpBindingModel {
     private String email;
     private String password;
     private String confirmPassword;
-    private String imageUrl;
 
     public UserSignUpBindingModel(){
 
@@ -19,13 +18,12 @@ public class UserSignUpBindingModel {
 
     public UserSignUpBindingModel(String username, String fullName,
                                   String email, String password,
-                                  String confirmPassword, String imageUrl) {
+                                  String confirmPassword) {
         this.username = username;
         this.fullName = fullName;
         this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
-        this.imageUrl = imageUrl;
     }
 
     @Size(min = 3)
@@ -79,13 +77,4 @@ public class UserSignUpBindingModel {
         return this;
     }
 
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public UserSignUpBindingModel setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-        return this;
-    }
 }

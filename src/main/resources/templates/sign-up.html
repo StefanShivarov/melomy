@@ -25,6 +25,9 @@
                 <h2>Create an account to listen to your favourite melodies for free!</h2>
             </div>
             <form th:action="@{/users/sign-up}" th:method="POST" th:object="${userModel}" class="sign-up-form">
+                <div th:if="${badCredentials}" class="form-row">
+                    <h2>Passwords don't match!</h2>
+                </div>
                 <div class="form-row">
                     <label for="fullName">Full Name *</label>
                     <input th:field="*{fullName}" th:errorclass="is-invalid" type="text" name="fullName" id="fullName" placeholder="Enter your full name">
@@ -60,10 +63,7 @@
                         Invalid confirm password.
                     </p>
                 </div>
-                <div class="form-row">
-                    <label for="imageUrl">Profile Picture Url</label>
-                    <input th:field="*{imageUrl}" type="text" name="imageUrl" id="imageUrl" placeholder="Enter your profile picture image url (optional)">
-                </div>
+
                 <div class="form-row">
                     <input type="submit" id="submitSignUp" value="Sign up">
                 </div>

@@ -14,6 +14,7 @@ public class SongAddBindingModel {
     }
 
     @NotBlank
+    @NotNull
     public String getName() {
         return name;
     }
@@ -24,6 +25,7 @@ public class SongAddBindingModel {
     }
 
     @NotBlank
+    @NotNull
     public String getSongUrl() {
         return songUrl;
     }

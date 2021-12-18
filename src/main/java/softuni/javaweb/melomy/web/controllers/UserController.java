@@ -37,6 +37,9 @@ public class UserController {
                                 RedirectAttributes redirectAttributes){
 
         if(bindingResult.hasErrors() || !userModel.getPassword().equals(userModel.getConfirmPassword())){
+            if(!userModel.getPassword().equals(userModel.getConfirmPassword())){
+                redirectAttributes.addFlashAttribute("badCredentials", true);
+            }
             redirectAttributes.addFlashAttribute("userModel", userModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userModel",
                     bindingResult);

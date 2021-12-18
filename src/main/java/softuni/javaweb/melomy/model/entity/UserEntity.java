@@ -12,9 +12,6 @@ public class UserEntity extends BaseEntity{
     private String fullName;
     private String email;
     private String password;
-    private String imageUrl;
-    private List<SongEntity> favouriteSongs;
-    private List<ArtistEntity> favouriteArtists;
     private Set<RoleEntity> roles;
 
 
@@ -62,35 +59,6 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    @Column(name = "image_url")
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public UserEntity setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-        return this;
-    }
-
-    @ManyToMany
-    public List<SongEntity> getFavouriteSongs() {
-        return favouriteSongs;
-    }
-
-    public UserEntity setFavouriteSongs(List<SongEntity> favouriteSongs) {
-        this.favouriteSongs = favouriteSongs;
-        return this;
-    }
-
-    @ManyToMany
-    public List<ArtistEntity> getFavouriteArtists() {
-        return favouriteArtists;
-    }
-
-    public UserEntity setFavouriteArtists(List<ArtistEntity> favouriteArtists) {
-        this.favouriteArtists = favouriteArtists;
-        return this;
-    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     public Set<RoleEntity> getRoles() {

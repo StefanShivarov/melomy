@@ -5,8 +5,12 @@ import org.springframework.stereotype.Repository;
 import softuni.javaweb.melomy.model.entity.CommentEntity;
 import softuni.javaweb.melomy.model.entity.SongEntity;
 
+import java.util.Optional;
+
 @Repository
 public interface CommentRepository extends JpaRepository<CommentEntity, Long> {
 
     void deleteAllBySong(SongEntity song);
+
+    Optional<CommentEntity> findFirstBySong_Id(Long songId);
 }

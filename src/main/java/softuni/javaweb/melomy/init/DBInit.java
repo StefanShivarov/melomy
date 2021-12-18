@@ -11,10 +11,6 @@ public class DBInit implements CommandLineRunner {
     private final GenreService genreService;
     private final RoleService roleService;
 
-
-
-
-
     public DBInit(UserService userService, GenreService genreService, RoleService roleService) {
         this.userService = userService;
         this.genreService = genreService;
@@ -24,12 +20,12 @@ public class DBInit implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-//
-//        roleService.initializeRoles();
-//
-//        userService.intializeUsers();
-//
-//        genreService.initializeGenres();
+
+        roleService.initializeRoles();
+
+        userService.intializeUsers();
+
+        genreService.initializeGenres();
 
 
     }
