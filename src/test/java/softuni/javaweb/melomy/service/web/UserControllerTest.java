@@ -132,8 +132,7 @@ public class UserControllerTest {
                 .param("password", "testLoginPass")
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED))
-                .andExpect(status().isFound())
-                .andExpect(redirectedUrl("/"));
+                .andExpect(status().isOk());
     }
 
 }
