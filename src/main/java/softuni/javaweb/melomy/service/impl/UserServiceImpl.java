@@ -11,9 +11,11 @@ import softuni.javaweb.melomy.model.view.UserViewModel;
 import softuni.javaweb.melomy.repository.RoleRepository;
 import softuni.javaweb.melomy.repository.UserRepository;
 import softuni.javaweb.melomy.service.UserService;
+import softuni.javaweb.melomy.web.exceptions.ObjectNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -93,6 +95,23 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .map(this::mapToViewModel)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteUser(Long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    @Override
+    public void makeAdmin(Long id) {
+        Optional<UserEntity> userOpt = userRepository.findById(id);
+        if(userOpt.isEmpty()){
+            throw new ObjectNotFoundException("User with id "+id+" not found!");
+        }
+
+        UserEntity user = userOpt.get();
+        user.setRoles(Set.of(roleRepository.findByName(RoleNameEnum.USER), roleRepository.findByName(RoleNameEnum.ADMIN)));
+        userRepository.save(user);
     }
 
     private UserViewModel mapToViewModel(UserEntity userEntity){

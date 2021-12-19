@@ -6,8 +6,8 @@ import javax.validation.constraints.Size;
 
 public class UserSignUpBindingModel {
 
-    private String username;
     private String fullName;
+    private String username;
     private String email;
     private String password;
     private String confirmPassword;

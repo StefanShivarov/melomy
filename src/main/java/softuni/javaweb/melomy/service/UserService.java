@@ -16,4 +16,8 @@ public interface UserService {
     boolean isAdmin(String username);
 
     List<UserViewModel> searchByUsernameContaining(String input);
+
+    void deleteUser(Long userId);
+
+    void makeAdmin(Long id);
 }

@@ -16,9 +16,8 @@
     <main class="admin-main">
 
         <article class="stats-article error-article">
-            <h1 class="stats-h1">500</h1>
-            <h1 class="stats-h1">Internal Server Error</h1>
-            <h3 class="stats-h3">Ooops! There's a little error in our server!</h3>
+            <h1 class="stats-h1" th:text="${status}">404</h1>
+            <h3 class="stats-h3" th:text="${errorMessage}"></h3>
             <a href="/">Back to homepage</a>
         </article>
     </main>

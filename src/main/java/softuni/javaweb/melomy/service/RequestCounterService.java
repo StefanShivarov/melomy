@@ -9,4 +9,6 @@ public interface RequestCounterService {
     RequestCounterViewModel getRequestCounterStats();
 
     void addRequestMethod(String method);
+
+    void resetRequestCounterData();
 }

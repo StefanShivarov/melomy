@@ -37,6 +37,15 @@ public class RequestCounterServiceImpl implements RequestCounterService {
     }
 
     @Override
+    public void resetRequestCounterData() {
+        this.anonymousRequests = 0;
+        this.authorizedRequests = 0;
+        this.getRequests = 0;
+        this.postRequests = 0;
+        this.deleteRequests = 0;
+    }
+
+    @Override
     public RequestCounterViewModel getRequestCounterStats() {
         return new RequestCounterViewModel(authorizedRequests, anonymousRequests, getRequests, postRequests, deleteRequests);
     }

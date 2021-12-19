@@ -1,5 +1,6 @@
 package softuni.javaweb.melomy.web.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -124,6 +125,22 @@ public class AdminController {
         redirectAttributes.addFlashAttribute("searchResults", userService.searchByUsernameContaining(input));
         return "redirect:/admin/users/manage";
     }
+
+    @PreAuthorize("#userServiceImpl.isAdmin(#principal.username)")
+    @DeleteMapping("/users/{id}/delete")
+    public String deleteUser(@PathVariable(name = "id") Long id){
+        userService.deleteUser(id);
+        return "redirect:/admin/users/manage";
+    }
+
+    @PreAuthorize("#userServiceImpl.isAdmin(#principal.username)")
+    @PostMapping("/users/{id}/raise")
+    public String makeAdmin(@PathVariable(name = "id") Long id){
+
+        userService.makeAdmin(id);
+        return "redirect:/admin/users/manage";
+    }
+
 
     @ModelAttribute("searchResults")
     public List<UserViewModel> searchResults(){

@@ -10,8 +10,8 @@ import java.util.Set;
 public class UserServiceModel {
 
     private Long id;
-    private String username;
     private String fullName;
+    private String username;
     private String email;
     private String password;
     private Set<RoleEntity> roles;

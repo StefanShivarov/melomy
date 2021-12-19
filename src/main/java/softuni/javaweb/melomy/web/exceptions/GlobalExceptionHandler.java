@@ -1,46 +1,40 @@
 package softuni.javaweb.melomy.web.exceptions;
 
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.servlet.ModelAndView;
 
-@ControllerAdvice
-public class GlobalExceptionHandler {
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
 
-//    @ExceptionHandler(HttpClientErrorException.NotFound.class)
-//    public ModelAndView handleNotFound(HttpClientErrorException.NotFound e){
-//
-//        ModelAndView modelAndView = new ModelAndView("404");
-//        modelAndView.setStatus(HttpStatus.NOT_FOUND);
-//        return modelAndView;
-//    }
+@Controller
+public class GlobalExceptionHandler implements ErrorController {
 
-    @ExceptionHandler(ObjectNotFoundException.class)
-    public ModelAndView handleObjectNotFoundException(ObjectNotFoundException e){
+    private static final String NOT_FOUND = "We could not find what you're looking for!";
+    private static final String DEFAULT_MESSAGE = "Ooops. Something went wrong";
 
-        ModelAndView modelAndView = new ModelAndView("404");
-        modelAndView.addObject("message", e.getMessage());
-        modelAndView.setStatus(HttpStatus.NOT_FOUND);
-        return modelAndView;
+    @RequestMapping("/error")
+    public String handleError(Model model, HttpServletRequest request) {
+        String errorMessage = request.getAttribute(RequestDispatcher.ERROR_MESSAGE).toString();
+        if(errorMessage.equals("")){
+            errorMessage = DEFAULT_MESSAGE;
+        }
+
+        int status = Integer.parseInt(request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE).toString());
+        model.addAttribute("status", status);
+        if (status == HttpStatus.NOT_FOUND.value()) {
+
+            model.addAttribute("errorMessage", NOT_FOUND);
+        } else {
+            model.addAttribute("errorMessage", errorMessage);
+        }
+        return "error";
     }
-
-//    @ExceptionHandler(HttpClientErrorException.Forbidden.class)
-//    public ModelAndView handleForbiddenAccessException(HttpClientErrorException.Forbidden e){
-//
-//        ModelAndView modelAndView = new ModelAndView("403");
-//        modelAndView.setStatus(HttpStatus.FORBIDDEN);
-//        return modelAndView;
-//    }
-//
-//    @ExceptionHandler(HttpServerErrorException.InternalServerError.class)
-//    public ModelAndView handleInternalServerError(HttpServerErrorException.InternalServerError e){
-//
-//        ModelAndView modelAndView = new ModelAndView("500");
-//        modelAndView.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-//        return modelAndView;
-//    }
 }

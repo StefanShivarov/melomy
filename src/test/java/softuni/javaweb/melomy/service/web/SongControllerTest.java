@@ -109,7 +109,7 @@ public class SongControllerTest {
     void testNotFoundSong() throws Exception {
         mockMvc.perform(get("/songs/1010/details"))
                 .andExpect(status().isNotFound())
-                .andExpect(view().name("404"));
+                .andExpect(view().name("error"));
     }
 
     @Test
