@@ -82,6 +82,12 @@ public class CommentServiceImpl implements CommentService {
         commentRepository.deleteAllBySong(songEntity);
     }
 
+    @Transactional
+    @Override
+    public void deleteAllCommentsByAuthor(Long authorId) {
+        commentRepository.deleteAllByAuthor_Id(authorId);
+    }
+
     private CommentViewModel mapToViewModel(CommentEntity commentEntity){
 
         CommentViewModel commentViewModel = new CommentViewModel();

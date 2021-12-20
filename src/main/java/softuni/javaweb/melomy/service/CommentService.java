@@ -12,4 +12,6 @@ public interface CommentService {
     CommentViewModel createComment(CommentServiceModel commentServiceModel);
 
     void deleteAllCommentsBySong(Long songId);
+
+    void deleteAllCommentsByAuthor(Long authorId);
 }

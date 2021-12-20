@@ -10,6 +10,7 @@ import softuni.javaweb.melomy.model.service.UserServiceModel;
 import softuni.javaweb.melomy.model.view.UserViewModel;
 import softuni.javaweb.melomy.repository.RoleRepository;
 import softuni.javaweb.melomy.repository.UserRepository;
+import softuni.javaweb.melomy.service.CommentService;
 import softuni.javaweb.melomy.service.UserService;
 import softuni.javaweb.melomy.web.exceptions.ObjectNotFoundException;
 
@@ -24,12 +25,14 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final CommentService commentService;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder){
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, CommentService commentService, ModelMapper modelMapper, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.commentService = commentService;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
     }
@@ -99,6 +102,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long userId) {
+        commentService.deleteAllCommentsByAuthor(userId);
         userRepository.deleteById(userId);
     }
 

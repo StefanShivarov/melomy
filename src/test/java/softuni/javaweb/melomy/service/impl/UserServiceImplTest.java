@@ -16,6 +16,7 @@ import softuni.javaweb.melomy.model.service.UserServiceModel;
 import softuni.javaweb.melomy.model.view.UserViewModel;
 import softuni.javaweb.melomy.repository.RoleRepository;
 import softuni.javaweb.melomy.repository.UserRepository;
+import softuni.javaweb.melomy.service.CommentService;
 
 import java.util.Optional;
 import java.util.Set;
@@ -37,12 +38,15 @@ public class UserServiceImplTest {
     @Mock
     private PasswordEncoder mockPasswordEncoder;
 
+    @Mock
+    private CommentService commentService;
+
     private UserServiceImpl userServiceImpl;
 
     @BeforeEach
     void setUp(){
 
-        userServiceImpl = new UserServiceImpl(mockUserRepository, mockRoleRepository, mockModelMapper, mockPasswordEncoder);
+        userServiceImpl = new UserServiceImpl(mockUserRepository, mockRoleRepository, commentService, mockModelMapper, mockPasswordEncoder);
 
         adminRole = new RoleEntity();
         adminRole.setName(RoleNameEnum.ADMIN);

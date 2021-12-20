@@ -48,7 +48,7 @@ public class ArtistEntity extends BaseEntity{
 //        return this;
 //    }
 //
-//    @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "artist")
 //    public List<AlbumEntity> getAlbums() {
 //        return albums;
 //    }

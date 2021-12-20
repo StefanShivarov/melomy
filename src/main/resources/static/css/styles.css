@@ -594,10 +594,11 @@ footer h1{
     font-size: 50px;
 }
 
-.song-player-info h4{
+.song-player-info a, .song-player-info span{
     color: #c3c6e9;
     font-size: 20px;
     margin-bottom: 10px;
+    text-decoration: none;
 }
 
 .song-player-info p{
@@ -839,6 +840,7 @@ footer h1{
     background: #363ea3;
     border-radius: 25px;
 }
+
 
 .add-left-col{
     width: 40%;

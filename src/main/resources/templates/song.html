@@ -28,7 +28,10 @@
             </section>
             <section class="song-player-info">
                 <h2 th:text="*{name}">Rock & Roll Star</h2>
-                    <h4 th:text="'Song • '+*{artistName}+' • '+*{albumName}">Song • Oasis • Definitely Maybe</h4>
+
+                    <a th:href="@{/albums/{id}/details(id=*{albumId})}" th:text="*{albumName}"></a>
+                    <span> • </span>
+                    <a th:href="@{/artists/{id}/details(id=*{artistId})}" th:text="*{artistName}"></a>
                     <form th:action="@{/songs/{id}/delete(id=*{id})}" sec:authorize="hasRole('ADMIN')" th:method="DELETE" id="deleteSongForm" >
                         <input id="deleteSongBtn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this song?')">
                     </form>
