@@ -16,14 +16,10 @@ public class RequestCounterInterceptor implements HandlerInterceptor {
         this.requestCounterService = requestCounterService;
     }
 
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        requestCounterService.onRequest();
-        return true;
-    }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        requestCounterService.onRequest();
         requestCounterService.addRequestMethod(request.getMethod());
     }
 }

@@ -16,6 +16,7 @@ public class ApplicationScheduler {
         this.requestCounterService = requestCounterService;
     }
 
+//    @Scheduled(cron = " */2 * * * *")//every 2 minutes
     @Scheduled(cron = "0 * * ? * *")//every minute (for testing purpose)
 //    @Scheduled(cron = "0 0 0 * * ?") //every day at 00:00
     public void resetRequestCounterData(){
